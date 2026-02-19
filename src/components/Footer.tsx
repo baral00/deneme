@@ -1,0 +1,64 @@
+import React from 'react';
+import Link from 'next/link';
+import { Instagram, Facebook, Mail, Phone } from 'lucide-react';
+
+export default function Footer() {
+    return (
+        <footer className="bg-emerald text-cream py-16 px-6 border-t border-gold/20">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div className="space-y-6">
+                    <h3 className="text-2xl font-serif text-gold tracking-widest uppercase">
+                        Harp <span className="font-light italic">&</span> Events
+                    </h3>
+                    <p className="text-cream/70 text-sm leading-relaxed max-w-xs">
+                        Crafting timeless celebrations and bespoke experiences for the most discerning clients.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">Quick Links</h4>
+                    <ul className="space-y-4 text-sm text-cream/70">
+                        <li><Link href="#home" className="hover:text-gold transition-colors">Home</Link></li>
+                        <li><Link href="#about" className="hover:text-gold transition-colors">Our Approach</Link></li>
+                        <li><Link href="#galerie" className="hover:text-gold transition-colors">Galerie</Link></li>
+                        <li><Link href="#contact" className="hover:text-gold transition-colors">Contact</Link></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">Contact Us</h4>
+                    <ul className="space-y-4 text-sm text-cream/70">
+                        <li className="flex items-center space-x-3">
+                            <Mail size={16} className="text-gold" />
+                            <span>concierge@harpevents.com</span>
+                        </li>
+                        <li className="flex items-center space-x-3">
+                            <Phone size={16} className="text-gold" />
+                            <span>+1 (555) 000-8888</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">Social</h4>
+                    <div className="flex space-x-4">
+                        <a href="#" className="w-10 h-10 border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-emerald transition-all duration-300">
+                            <Instagram size={18} />
+                        </a>
+                        <a href="#" className="w-10 h-10 border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-emerald transition-all duration-300">
+                            <Facebook size={18} />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-cream/40">
+                <p>&copy; {new Date().getFullYear()} Harp & Events. All Rights Reserved.</p>
+                <div className="flex space-x-8 mt-4 md:mt-0">
+                    <Link href="#">Privacy Policy</Link>
+                    <Link href="#">Terms of Service</Link>
+                </div>
+            </div>
+        </footer>
+    );
+}
