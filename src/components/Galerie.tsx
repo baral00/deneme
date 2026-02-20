@@ -24,9 +24,7 @@ export default function Galerie({ images }: GalerieProps) {
 
                 {/* Gallery grid: portrait - square - portrait */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                    {images.map((image, index) => {
-                        console.log("[v0] Rendering gallery image:", index, image.id, image.title, image.url.substring(0, 80));
-                        return (
+                    {images.map((image, index) => (
                             <motion.div
                                 key={image.id}
                                 initial={{ opacity: 0, y: 20 }}
@@ -55,8 +53,7 @@ export default function Galerie({ images }: GalerieProps) {
                                     </div>
                                 </motion.div>
                             </motion.div>
-                        );
-                    })}
+                    ))}
                 </div>
             </Container>
         </section>

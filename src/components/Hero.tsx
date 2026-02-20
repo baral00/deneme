@@ -7,17 +7,10 @@ import Image from 'next/image';
 
 export default function Hero() {
     return (
-        <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-            {/* Background Image */}
+        <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden bg-emerald">
+            {/* Background Overlay */}
             <div className="absolute inset-0 z-0">
-                <Image
-                    src="/luxury_wedding_hero.png" // Assuming the generated image will be moved to public/
-                    alt="Luxury Wedding Harp"
-                    fill
-                    className="object-cover"
-                    priority
-                />
-                <div className="absolute inset-0 bg-emerald/30 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-emerald" />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-cream/20" />
             </div>
 
