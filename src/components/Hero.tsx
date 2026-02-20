@@ -38,9 +38,9 @@ export default function Hero() {
                         <Image
                             src="/images/hero-logo.png"
                             alt="Harp & Events Logo"
-                            width={200}
-                            height={200}
-                            className="w-32 h-32 md:w-48 md:h-48 object-contain"
+                            width={500}
+                            height={500}
+                            className="w-64 h-64 md:w-96 md:h-96 object-contain"
                         />
                     </motion.div>
 
