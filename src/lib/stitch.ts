@@ -11,19 +11,19 @@ export async function getGalleryImages(): Promise<GalleryImage[]> {
     return [
         {
             id: '1',
-            url: '/images/gallery-2.jpg',
+            url: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/250425_Du%CC%81oBoreal%288%29-VSjqkMTEDyNYbufZFFVDrJ1xh1qEWU.jpg',
             title: 'Portrait with Harp',
             height: 700
         },
         {
             id: '2',
-            url: '/images/gallery-1.jpg',
+            url: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2080.JPG-fbxQrsFinAScYFtAcpppaQskheOW7r.jpeg',
             title: 'Harp Performance',
             height: 500
         },
         {
             id: '3',
-            url: '/images/gallery-3.jpg',
+            url: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/250425_Du%CC%81oBoreal%2829%29-SyQRgeEiWCnJPSj7vP9N7gpLtqACTn.jpg',
             title: 'Artistic Portrait',
             height: 700
         }
