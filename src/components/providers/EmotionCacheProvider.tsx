@@ -11,39 +11,69 @@ export default function EmotionCacheProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [cache] = useState(() => {
-    const cache = createCache({ key: 'mui' });
+  const [registry] = useState(() => {
+    const cache = createCache({ key: 'mui', prepend: true });
     cache.compat = true;
-    return cache;
+    const prevInsert = cache.insert;
+    let inserted: { name: string; isGlobal: boolean }[] = [];
+    cache.insert = (...args) => {
+      const [selector, serialized] = args;
+      if (cache.inserted[serialized.name] === undefined) {
+        inserted.push({
+          name: serialized.name,
+          isGlobal: !selector,
+        });
+      }
+      return prevInsert(...args);
+    };
+    const flush = () => {
+      const prevInserted = inserted;
+      inserted = [];
+      return prevInserted;
+    };
+    return { cache, flush };
   });
 
   useServerInsertedHTML(() => {
-    const entries = Object.entries(cache.inserted);
-    if (entries.length === 0) {
+    const inserted = registry.flush();
+    if (inserted.length === 0) {
       return null;
     }
-
-    const names: string[] = [];
     let styles = '';
+    let dataEmotionAttribute = registry.cache.key;
 
-    for (const [name, style] of entries) {
-      if (typeof style === 'string') {
-        names.push(name);
-        styles += style;
+    const globals: { name: string; style: string }[] = [];
+
+    for (const { name, isGlobal } of inserted) {
+      const style = registry.cache.inserted[name];
+      if (typeof style !== 'boolean') {
+        if (isGlobal) {
+          globals.push({ name, style: style as string });
+        } else {
+          styles += style;
+          dataEmotionAttribute += ` ${name}`;
+        }
       }
     }
 
-    // Clear inserted to prevent duplicate insertions
-    cache.inserted = {};
-
     return (
-      <style
-        key={cache.key}
-        data-emotion={`${cache.key} ${names.join(' ')}`}
-        dangerouslySetInnerHTML={{ __html: styles }}
-      />
+      <React.Fragment>
+        {globals.map(({ name, style }) => (
+          <style
+            key={name}
+            data-emotion={`${registry.cache.key}-global ${name}`}
+            dangerouslySetInnerHTML={{ __html: style }}
+          />
+        ))}
+        {styles && (
+          <style
+            data-emotion={dataEmotionAttribute}
+            dangerouslySetInnerHTML={{ __html: styles }}
+          />
+        )}
+      </React.Fragment>
     );
   });
 
-  return <CacheProvider value={cache}>{children}</CacheProvider>;
+  return <CacheProvider value={registry.cache}>{children}</CacheProvider>;
 }
