@@ -29,14 +29,20 @@ export default function Hero() {
                     transition={{ duration: 1.2, ease: "easeOut" }}
                     className="space-y-8"
                 >
-                    <motion.span
+                    <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5, duration: 1 }}
-                        className="text-gold uppercase tracking-[0.4em] text-xs font-semibold block"
+                        className="flex items-center justify-center"
                     >
-                        Bespoke Event Planning
-                    </motion.span>
+                        <Image
+                            src="/images/hero-logo.png"
+                            alt="Harp & Events Logo"
+                            width={200}
+                            height={200}
+                            className="w-32 h-32 md:w-48 md:h-48 object-contain"
+                        />
+                    </motion.div>
 
                     <h1 className="text-5xl md:text-8xl text-cream font-serif leading-tight">
                         Crafting Timeless <br />
