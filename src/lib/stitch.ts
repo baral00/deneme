@@ -11,15 +11,15 @@ export async function getGalleryImages(): Promise<GalleryImage[]> {
     return [
         {
             id: '1',
-            url: '/images/gallery-1.jpg',
-            title: 'Harp Performance',
-            height: 500
-        },
-        {
-            id: '2',
             url: '/images/gallery-2.jpg',
             title: 'Portrait with Harp',
             height: 700
+        },
+        {
+            id: '2',
+            url: '/images/gallery-1.jpg',
+            title: 'Harp Performance',
+            height: 500
         },
         {
             id: '3',
