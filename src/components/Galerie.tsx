@@ -23,7 +23,7 @@ export default function Galerie({ images }: GalerieProps) {
                     </Typography>
                 </Box>
 
-                <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
                     {images.map((image, index) => (
                         <motion.div
                             key={image.id}
@@ -31,7 +31,7 @@ export default function Galerie({ images }: GalerieProps) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="relative group overflow-hidden break-inside-avoid"
+                            className="relative group overflow-hidden"
                         >
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
@@ -41,8 +41,7 @@ export default function Galerie({ images }: GalerieProps) {
                                 <img
                                     src={image.url}
                                     alt={image.title}
-                                    className="w-full object-cover transition-all duration-700"
-                                    style={{ minHeight: `${image.height}px` }}
+                                    className="w-full h-full object-cover transition-all duration-700"
                                 />
                                 <div className="absolute inset-0 bg-emerald/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                                     <div className="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
