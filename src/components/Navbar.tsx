@@ -61,17 +61,6 @@ export default function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <Link
-                        href="#contact"
-                        className={cn(
-                            "px-6 py-2 border transition-all duration-300 uppercase tracking-widest text-xs",
-                            isScrolled
-                                ? "border-gold text-gold hover:bg-gold hover:text-emerald"
-                                : "border-emerald text-emerald hover:bg-emerald hover:text-cream"
-                        )}
-                    >
-                        Reserved
-                    </Link>
                 </div>
 
                 {/* Mobile Toggle */}
