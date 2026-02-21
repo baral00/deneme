@@ -3,6 +3,7 @@ import path from 'path';
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Testimonials from "@/components/Testimonials";
 import Galerie from "@/components/Galerie";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -41,6 +42,7 @@ export default async function Home() {
         description={pageData.description || "Website"}
       />
       <About />
+      <Testimonials />
       <Galerie images={images} />
       <Contact />
       <Footer />
