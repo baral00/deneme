@@ -14,8 +14,8 @@ interface HeroProps {
 
 export default function Hero({ heading = "Crafting Timeless Celebrations", description = "Bespoke Event Planning" }: HeroProps) {
     return (
-        <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-            {/* Background Image */}
+        <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden bg-emerald">
+            {/* Background Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/IMG_2080.JPG"

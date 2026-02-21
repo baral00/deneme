@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { Typography, Container, Box } from '@mui/material';
 import type { GalleryImage } from '@/lib/stitch';
 import { FadeInUp } from './animations/FadeInUp';
@@ -56,7 +55,6 @@ export default function Galerie({ images }: GalerieProps) {
                                     className="w-full h-auto object-cover rounded-sm transition-all duration-700"
                                 />
                             </motion.div>
-                        </motion.div>
                     ))}
                 </div>
             </Container>
