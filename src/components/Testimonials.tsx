@@ -67,7 +67,7 @@ export default function Testimonials() {
         <section className="py-24 bg-white overflow-hidden border-y border-[#D4AF37]/10 relative" id="testimonials">
             {/* Seamless Floral Background */}
             <div
-                className="absolute inset-0 z-0 opacity-10 pointer-events-none"
+                className="absolute inset-0 z-0 opacity-40 pointer-events-none"
                 style={{
                     backgroundImage: "url('/luxury-floral-pattern.png')",
                     backgroundRepeat: 'repeat',
@@ -109,7 +109,7 @@ export default function Testimonials() {
                     {duplicatedTestimonials.map((testimonial, index) => (
                         <div
                             key={`${testimonial.id}-${index}`}
-                            className="flex-none w-[300px] md:w-[400px] p-8 md:p-12 rounded-3xl bg-white border border-[#D4AF37]/30 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between"
+                            className="flex-none w-[300px] md:w-[400px] p-8 md:p-12 rounded-3xl bg-white/60 backdrop-blur-md border border-[#D4AF37]/30 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between"
                         >
                             <div>
                                 <Quote className="w-8 h-8 text-[#D4AF37]/40 mb-6" strokeWidth={1.5} />
