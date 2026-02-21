@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div className="space-y-6">
                     <h3 className="text-2xl font-serif text-gold tracking-widest uppercase">
-                        Harp <span className="font-light italic">&</span> Events
+                        Harp <span className="font-light italic">for</span> Events
                     </h3>
                     <p className="text-cream/70 text-sm leading-relaxed max-w-xs">
                         Crafting timeless celebrations and bespoke experiences for the most discerning clients.
@@ -20,22 +20,22 @@ export default function Footer() {
                     <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">Quick Links</h4>
                     <ul className="space-y-4 text-sm text-cream/70">
                         <li><HoverScale><Link href="#home" className="block hover:text-gold transition-colors">Home</Link></HoverScale></li>
-                        <li><HoverScale><Link href="#about" className="block hover:text-gold transition-colors">Our Approach</Link></HoverScale></li>
+                        <li><HoverScale><Link href="#about" className="block hover:text-gold transition-colors">My Approach</Link></HoverScale></li>
                         <li><HoverScale><Link href="#galerie" className="block hover:text-gold transition-colors">Galerie</Link></HoverScale></li>
                         <li><HoverScale><Link href="#contact" className="block hover:text-gold transition-colors">Contact</Link></HoverScale></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">Contact Us</h4>
+                    <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">Contact me</h4>
                     <ul className="space-y-4 text-sm text-cream/70">
                         <li className="flex items-center space-x-3">
                             <Mail size={16} className="text-gold" />
-                            <span>concierge@harpevents.com</span>
+                            <span>harpforevents@gmail.com</span>
                         </li>
                         <li className="flex items-center space-x-3">
                             <Phone size={16} className="text-gold" />
-                            <span>+1 (555) 000-8888</span>
+                            <span>(+46) 0793582237</span>
                         </li>
                     </ul>
                 </div>
@@ -57,13 +57,6 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-cream/40">
-                <p>&copy; {new Date().getFullYear()} Harp & Events. All Rights Reserved.</p>
-                <div className="flex space-x-8 mt-4 md:mt-0">
-                    <Link href="#">Privacy Policy</Link>
-                    <Link href="#">Terms of Service</Link>
-                </div>
-            </div>
         </footer>
     );
 }
