@@ -12,7 +12,8 @@ import {
     Paper
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { HarpSvg } from './HarpSvg';
+import { FadeInUp } from './animations/FadeInUp';
+import { HoverScale } from './animations/HoverScale';
 
 const eventTypes = [
     'Wedding Ceremony',
@@ -27,27 +28,32 @@ export default function Contact() {
     const [date, setDate] = useState<Date | null>(null);
 
     return (
-        <section id="contact" className="py-24 bg-cream relative overflow-hidden">
-            {/* Background Harps */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-5">
-                <HarpSvg className="absolute top-10 -left-10 w-96 h-96 text-gold transform -rotate-12" />
-                <HarpSvg className="absolute bottom-10 -right-10 w-96 h-96 text-gold transform rotate-12" />
-                <HarpSvg className="absolute top-1/2 left-1/4 w-48 h-48 text-emerald transform -translate-y-1/2 -rotate-6" />
-                <HarpSvg className="absolute top-1/4 right-1/4 w-64 h-64 text-emerald transform -translate-y-1/2 rotate-6 opacity-30" />
-            </div>
+        <section id="contact" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#F0EBE1] to-[#E8E1D5]">
+            {/* Seamless Floral Background */}
+            <div
+                className="absolute inset-0 z-0 opacity-20"
+                style={{
+                    backgroundImage: "url('/luxury-floral-pattern.png')",
+                    backgroundRepeat: 'repeat',
+                    backgroundSize: '400px', // Adjust size for optimal pattern scaling
+                }}
+            />
+            {/* Gradient overlay to soften it and hide seams */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#F0EBE1] via-transparent to-[#E8E1D5] z-0" />
 
             <div className="max-w-4xl mx-auto px-6 relative z-10">
-                <Paper className="p-12 md:p-16 border border-gold/10" elevation={0}>
-                    <Box className="text-center mb-12">
-                        <Typography variant="overline" className="text-gold tracking-[0.3em] font-medium mb-4 block">
-                            Inquiry
-                        </Typography>
-                        <Typography variant="h2" className="text-emerald mb-4">
-                            Reserve <span className="italic font-light">The Date</span>
-                        </Typography>
-                        <Typography className="text-foreground/60 max-w-sm mx-auto">
-                            Please provide your details below, and our concierge will contact you within 24 hours.
-                        </Typography>
+                <div
+                    className="p-10 md:p-16 border border-gold/20 rounded-[2.5rem] bg-[#FCFAF8]/95 backdrop-blur-md shadow-[0_20px_50px_rgba(212,175,55,0.1)] relative overflow-hidden"
+                >
+                    <Box className="text-center mb-12 relative z-10">
+                        <FadeInUp>
+                            <Typography variant="overline" className="text-gold tracking-[0.3em] font-medium mb-4 block">
+                                Inquiry
+                            </Typography>
+                            <Typography variant="h2" className="text-emerald mb-4">
+                                Reserve <span className="italic font-light">The Date</span>
+                            </Typography>
+                        </FadeInUp>
                     </Box>
 
                     <form className="space-y-8">
@@ -95,6 +101,7 @@ export default function Contact() {
                                     label="Event Date"
                                     value={date}
                                     onChange={(newValue) => setDate(newValue)}
+                                    format="dd/MM/yyyy"
                                     slotProps={{
                                         textField: {
                                             variant: 'standard',
@@ -111,23 +118,26 @@ export default function Contact() {
                                     variant="standard"
                                     multiline
                                     rows={4}
-                                    placeholder="Tell us about your dream celebration..."
+                                    placeholder="Tell me about your dream celebration..."
                                     InputLabelProps={{ shrink: true }}
                                 />
                             </Box>
                         </Box>
 
-                        <Box className="pt-8 text-center">
-                            <Button
-                                variant="contained"
-                                className="bg-emerald text-cream px-16 py-4 tracking-widest uppercase text-xs"
-                                type="submit"
-                            >
-                                Send Inquiry
-                            </Button>
+                        <Box className="pt-8 text-center flex justify-center relative z-10">
+                            <HoverScale>
+                                <button
+                                    type="submit"
+                                    className="group relative flex items-center justify-center overflow-hidden rounded-full border border-emerald/40 bg-emerald/5 px-14 py-4 md:px-16 md:py-5 text-sm font-light tracking-[0.2em] uppercase text-emerald transition-all duration-500 hover:border-gold/60 hover:bg-gold/10"
+                                >
+                                    <span className="relative z-10 transition-colors duration-500 group-hover:text-gold/90 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+                                        Send Inquiry
+                                    </span>
+                                </button>
+                            </HoverScale>
                         </Box>
                     </form>
-                </Paper>
+                </div>
             </div>
         </section>
     );

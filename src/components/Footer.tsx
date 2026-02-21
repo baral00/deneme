@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Instagram, Facebook, Mail, Phone } from 'lucide-react';
+import { HoverScale } from './animations/HoverScale';
 
 export default function Footer() {
     return (
@@ -18,10 +19,10 @@ export default function Footer() {
                 <div>
                     <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">Quick Links</h4>
                     <ul className="space-y-4 text-sm text-cream/70">
-                        <li><Link href="#home" className="hover:text-gold transition-colors">Home</Link></li>
-                        <li><Link href="#about" className="hover:text-gold transition-colors">Our Approach</Link></li>
-                        <li><Link href="#galerie" className="hover:text-gold transition-colors">Galerie</Link></li>
-                        <li><Link href="#contact" className="hover:text-gold transition-colors">Contact</Link></li>
+                        <li><HoverScale><Link href="#home" className="block hover:text-gold transition-colors">Home</Link></HoverScale></li>
+                        <li><HoverScale><Link href="#about" className="block hover:text-gold transition-colors">Our Approach</Link></HoverScale></li>
+                        <li><HoverScale><Link href="#galerie" className="block hover:text-gold transition-colors">Galerie</Link></HoverScale></li>
+                        <li><HoverScale><Link href="#contact" className="block hover:text-gold transition-colors">Contact</Link></HoverScale></li>
                     </ul>
                 </div>
 
@@ -42,12 +43,16 @@ export default function Footer() {
                 <div>
                     <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">Social</h4>
                     <div className="flex space-x-4">
-                        <a href="#" className="w-10 h-10 border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-emerald transition-all duration-300">
-                            <Instagram size={18} />
-                        </a>
-                        <a href="#" className="w-10 h-10 border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-emerald transition-all duration-300">
-                            <Facebook size={18} />
-                        </a>
+                        <HoverScale>
+                            <a href="#" className="w-10 h-10 border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-emerald transition-colors duration-300">
+                                <Instagram size={18} />
+                            </a>
+                        </HoverScale>
+                        <HoverScale>
+                            <a href="#" className="w-10 h-10 border border-gold/30 flex items-center justify-center hover:bg-gold hover:text-emerald transition-colors duration-300">
+                                <Facebook size={18} />
+                            </a>
+                        </HoverScale>
                     </div>
                 </div>
             </div>

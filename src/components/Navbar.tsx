@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { HoverScale } from './animations/HoverScale';
 
 function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -57,16 +58,17 @@ export default function Navbar() {
                 {/* Desktop Links */}
                 <div className="hidden md:flex space-x-10 items-center">
                     {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className={cn(
-                                "text-sm uppercase tracking-[0.2em] font-medium transition-all duration-300 hover:text-gold",
-                                isScrolled ? "text-cream/90 hover:text-gold" : "text-cream/90 hover:text-gold"
-                            )}
-                        >
-                            {link.name}
-                        </Link>
+                        <HoverScale key={link.name}>
+                            <Link
+                                href={link.href}
+                                className={cn(
+                                    "block text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-300",
+                                    isScrolled ? "text-cream/90 hover:text-gold" : "text-cream/90 hover:text-gold"
+                                )}
+                            >
+                                {link.name}
+                            </Link>
+                        </HoverScale>
                     ))}
                 </div>
 
@@ -89,14 +91,15 @@ export default function Navbar() {
                         className="absolute top-full left-0 right-0 bg-emerald text-cream flex flex-col p-8 space-y-6 md:hidden border-t border-gold/20"
                     >
                         {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="text-lg uppercase tracking-widest hover:text-gold"
-                            >
-                                {link.name}
-                            </Link>
+                            <HoverScale key={link.name}>
+                                <Link
+                                    href={link.href}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="block text-lg uppercase tracking-widest hover:text-gold transition-colors duration-300"
+                                >
+                                    {link.name}
+                                </Link>
+                            </HoverScale>
                         ))}
                     </motion.div>
                 )}

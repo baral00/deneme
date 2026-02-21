@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Typography, Container, Box } from '@mui/material';
 import type { GalleryImage } from '@/lib/stitch';
+import { FadeInUp } from './animations/FadeInUp';
 
 interface GalerieProps {
     images: GalleryImage[];
@@ -12,18 +13,26 @@ interface GalerieProps {
 
 export default function Galerie({ images }: GalerieProps) {
     return (
-        <section id="galerie" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#fdfaf6] via-[#faf8f5] to-[#fdfaf6]">
-            {/* Subtle background elements */}
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-gold/5 blur-[100px]" />
-                <div className="absolute bottom-[-10%] left-[-5%] w-[50%] h-[50%] rounded-full bg-emerald/5 blur-[120px]" />
-            </div>
+        <section id="galerie" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#F7F4ED] to-[#F0EBE1]">
+            {/* Seamless Floral Background */}
+            <div
+                className="absolute inset-0 z-0 opacity-20"
+                style={{
+                    backgroundImage: "url('/luxury-floral-pattern.png')",
+                    backgroundRepeat: 'repeat',
+                    backgroundSize: '400px',
+                }}
+            />
+            {/* Gradient overlay to soften it and hide seams */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#F7F4ED] via-transparent to-[#F0EBE1] z-0" />
 
             <Container maxWidth="xl" className="relative z-10">
                 <Box className="text-center mb-16">
-                    <Typography variant="h2" className="text-emerald mb-4">
-                        A Galerie of <span className="italic font-light">Elegance</span>
-                    </Typography>
+                    <FadeInUp>
+                        <Typography variant="h2" className="text-emerald mb-4">
+                            A Galerie of <span className="italic font-light">Elegance</span>
+                        </Typography>
+                    </FadeInUp>
                 </Box>
 
                 <div className="columns-1 md:columns-2 gap-6 space-y-6">
