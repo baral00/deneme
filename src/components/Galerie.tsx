@@ -42,19 +42,25 @@ export default function Galerie({ images }: GalerieProps) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="relative overflow-hidden break-inside-avoid"
+                            className="relative break-inside-avoid mb-8"
                         >
-                            <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-                                className="relative line-clamp-none"
-                            >
-                                <img
-                                    src={image.url}
-                                    alt={image.title}
-                                    className="w-full h-auto object-cover rounded-sm transition-all duration-700"
-                                />
-                            </motion.div>
+                            {/* The Frame / Matte */}
+                            <div className="bg-[#FCFAF8] p-3 md:p-5 rounded-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-[#D4AF37]/30 relative group">
+                                {/* Inner delicate gold border (passepartout effect) */}
+                                <div className="absolute inset-3 md:inset-5 border border-[#D4AF37]/40 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                                <motion.div
+                                    whileHover={{ scale: 1.03 }}
+                                    transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+                                    className="relative overflow-hidden rounded-sm line-clamp-none bg-[#E8E6E1]"
+                                >
+                                    <img
+                                        src={image.url}
+                                        alt={image.title}
+                                        className="w-full h-auto object-cover transition-all duration-700 grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105"
+                                    />
+                                </motion.div>
+                            </div>
                         </motion.div>
                     ))}
                 </div>
