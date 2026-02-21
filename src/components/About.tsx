@@ -6,8 +6,9 @@ import { Paper, Typography, Box, Container } from '@mui/material';
 
 export default function About() {
     return (
-        <section id="about" className="py-24 bg-cream">
-            <Container maxWidth="lg">
+        <section id="about" className="py-24 relative overflow-hidden bg-[#faf8f5]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.05),transparent_50%),radial-gradient(circle_at_bottom_right,rgba(44,85,69,0.03),transparent_50%)]" />
+            <Container maxWidth="lg" className="relative z-10">
                 <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 8, alignItems: 'center' }}>
                     <Box>
                         <motion.div
@@ -17,17 +18,23 @@ export default function About() {
                             transition={{ duration: 0.8 }}
                         >
                             <Typography variant="overline" className="text-gold tracking-[0.3em] font-medium mb-4 block">
-                                The Bespoke Approach
+                                My Approach
                             </Typography>
                             <Typography variant="h2" className="text-emerald mb-8 leading-tight">
-                                Crafting Your <br />
-                                <span className="italic font-light">Vision into Reality</span>
+                                A Soundtrack for <br />
+                                <span className="italic font-light">Your Story</span>
                             </Typography>
                             <Typography className="text-foreground/70 text-lg leading-relaxed mb-6">
-                                At Harp for Events, we believe that every celebration is a masterpiece waiting to be composed. Our approach is deeply personal, ensuring that every detail reflects the unique soul of your story.
+                                I believe weddings and special events deserve more than just music—<span className="font-bold text-foreground">they deserve a soul.</span>
+                            </Typography>
+                            <Typography className="text-foreground/70 text-lg leading-relaxed mb-6">
+                                By pairing the ethereal sound of my harp with your unique story, I curate a bespoke experience from the first note to the last.
+                            </Typography>
+                            <Typography className="text-foreground/70 text-lg leading-relaxed mb-10">
+                                My focus is on the fine details that make your day truly yours, delivering a performance that is as timeless as it is unforgettable.
                             </Typography>
                             <Typography className="text-foreground/70 text-lg leading-relaxed">
-                                From the intricate floral arrangements to the ethereal sound of the harp, we curate every element with precision and passion, delivering an experience that transcends the ordinary.
+                                I simply provide the quiet elegance that your milestone deserves.
                             </Typography>
                         </motion.div>
                     </Box>
@@ -40,36 +47,36 @@ export default function About() {
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
                             <Paper
-                                className="bg-white p-12 relative overflow-hidden group"
+                                className="bg-white/80 backdrop-blur-sm p-12 relative overflow-hidden group shadow-xl shadow-gold/5"
                                 elevation={0}
                             >
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-bl-full transition-all group-hover:w-40 group-hover:h-40" />
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-gold/10 to-transparent rounded-bl-full transition-all duration-700 ease-out group-hover:w-full group-hover:h-full group-hover:from-gold/5 group-hover:rounded-none" />
 
                                 <Box className="relative z-10 space-y-12">
                                     <div>
                                         <Typography variant="h5" className="text-emerald mb-4 font-serif">
-                                            Curated Elegance
+                                            Concert-Level Artistry
                                         </Typography>
                                         <Typography className="text-foreground/60">
-                                            Access to the world's most exclusive venues and artisans, curated specifically for your taste.
+                                            As a concert harpist, I bring the mastery of the grand stage to your most intimate moments. I translate years of classical training into a personal soundtrack that reflects the unique soul of your story.
                                         </Typography>
                                     </div>
 
                                     <div className="border-t border-gold/10 pt-8">
                                         <Typography variant="h5" className="text-emerald mb-4 font-serif">
-                                            Impeccable Precision
+                                            Seamless Presence
                                         </Typography>
                                         <Typography className="text-foreground/60">
-                                            A dedicated concierge for every step of the journey, ensuring a seamless and stress-free planning experience.
+                                            Performing in world-class venues has taught me that true luxury lies in the details. I handle every nuance with quiet confidence, ensuring a seamless experience so you can simply stay in the moment.
                                         </Typography>
                                     </div>
 
                                     <div className="border-t border-gold/10 pt-8">
                                         <Typography variant="h5" className="text-emerald mb-4 font-serif">
-                                            Musical Artistry
+                                            The Perfect Note
                                         </Typography>
                                         <Typography className="text-foreground/60">
-                                            Integrating live harp performances and world-class musical curation into the fabric of your event.
+                                            I believe music should be as warm and welcoming as the occasion itself. Whether it's your wedding or a special gathering, I'm here to help you find the right acoustic balance to match the feel of your day. I'm looking forward to helping you make the moment feel truly special.
                                         </Typography>
                                     </div>
                                 </Box>

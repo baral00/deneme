@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import MUIProvider from "@/components/providers/MUIProvider";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 export const metadata: Metadata = {
   title: "Harp for Events | Luxury Event Planning",
@@ -15,9 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <MUIProvider>
-          {children}
-        </MUIProvider>
+        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+          <MUIProvider>
+            {children}
+          </MUIProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

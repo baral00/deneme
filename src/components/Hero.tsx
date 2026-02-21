@@ -5,20 +5,25 @@ import { motion } from 'framer-motion';
 import { Button } from '@mui/material';
 import Image from 'next/image';
 
-export default function Hero() {
+interface HeroProps {
+    heading?: string;
+    description?: string;
+}
+
+export default function Hero({ heading = "Crafting Timeless Celebrations", description = "Bespoke Event Planning" }: HeroProps) {
     return (
         <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/luxury_wedding_hero.png" // Assuming the generated image will be moved to public/
-                    alt="Luxury Wedding Harp"
+                    src="/IMG_2080.JPG"
+                    alt="Luxury Wedding Harp Setting"
                     fill
                     className="object-cover"
                     priority
                 />
-                <div className="absolute inset-0 bg-emerald/30 mix-blend-multiply" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-cream/20" />
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60" />
             </div>
 
             {/* Content */}
@@ -29,54 +34,44 @@ export default function Hero() {
                     transition={{ duration: 1.2, ease: "easeOut" }}
                     className="space-y-8"
                 >
-                    <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5, duration: 1 }}
-                        className="text-gold uppercase tracking-[0.4em] text-xs font-semibold block"
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+                        className="relative w-full max-w-4xl md:max-w-7xl mx-auto h-80 md:h-[40rem] mb-6 mt-4"
                     >
-                        Bespoke Event Planning
-                    </motion.span>
-
-                    <h1 className="text-5xl md:text-8xl text-cream font-serif leading-tight">
-                        Crafting Timeless <br />
-                        <span className="italic font-light">Celebrations</span>
-                    </h1>
+                        <Image
+                            src="/Gemini_Generated_Image_4fled34fled34fle-2-2.png"
+                            alt="Harp for Events Logo"
+                            fill
+                            className="object-contain drop-shadow-2xl scale-150 md:scale-[2.2] origin-center"
+                            priority
+                        />
+                    </motion.div>
+                    <h1 className="sr-only" data-sb-field-path="heading">{heading}</h1>
 
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1, duration: 1 }}
-                        className="flex flex-col md:flex-row items-center justify-center gap-6 mt-12"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1.0, ease: "easeOut", delay: 1.2 }}
+                        className="flex flex-col md:flex-row items-center justify-center gap-6 mt-0 md:-mt-44 relative z-20"
                     >
-                        <Button
-                            variant="contained"
-                            size="large"
-                            className="bg-gold text-emerald hover:bg-cream hover:text-emerald px-10 py-4 text-sm font-semibold tracking-widest rounded-none"
+                        <a
+                            href="#contact"
+                            className="bg-emerald/60 backdrop-blur-md border border-white/20 text-white hover:bg-emerald/80 hover:border-gold/50 hover:text-gold px-12 md:px-14 py-4 md:py-5 text-base md:text-lg font-semibold tracking-widest uppercase rounded-none transition-all duration-300"
                         >
-                            The Experience
-                        </Button>
-                        <Button
-                            variant="outlined"
-                            size="large"
-                            className="border-cream text-cream hover:bg-cream hover:text-emerald px-10 py-4 text-sm font-semibold tracking-widest rounded-none"
+                            Contact
+                        </a>
+                        <a
+                            href="#galerie"
+                            className="bg-emerald/60 backdrop-blur-md border border-white/20 text-white hover:bg-emerald/80 hover:border-gold/50 hover:text-gold px-12 md:px-14 py-4 md:py-5 text-base md:text-lg font-semibold tracking-widest uppercase rounded-none transition-all duration-300"
                         >
                             Galerie
-                        </Button>
+                        </a>
                     </motion.div>
                 </motion.div>
             </div>
 
-            {/* Scroll Indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-4"
-            >
-                <div className="w-[1px] h-20 bg-gradient-to-b from-gold/50 to-transparent" />
-                <span className="text-gold/50 text-[10px] uppercase tracking-[0.3em] vertical-rl">Scroll</span>
-            </motion.div>
         </section>
     );
 }

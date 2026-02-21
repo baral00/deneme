@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
@@ -33,18 +34,24 @@ export default function Navbar() {
     return (
         <nav
             className={cn(
-                'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-6 py-4',
-                isScrolled ? 'bg-emerald/95 backdrop-blur-md py-3 shadow-md' : 'bg-transparent'
+                'fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-6 py-2',
+                isScrolled ? 'bg-emerald/60 backdrop-blur-md py-1 shadow-md' : 'bg-transparent'
             )}
         >
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <Link href="/" className="flex items-center space-x-2">
-                    <span className={cn(
-                        "text-2xl font-serif tracking-widest uppercase transition-colors duration-500",
-                        isScrolled ? "text-gold" : "text-emerald"
+                    <div className={cn(
+                        "relative h-20 md:h-28 w-auto px-4 aspect-[4/1] transition-all duration-500",
+                        isScrolled ? "opacity-100" : "opacity-90 hover:opacity-100"
                     )}>
-                        Harp <span className="font-light italic">&</span> Events
-                    </span>
+                        <Image
+                            src="/Gemini_Generated_Image_4fled34fled34fle-2-2.png"
+                            alt="Harp for Events Logo"
+                            fill
+                            className="object-contain object-left"
+                            priority
+                        />
+                    </div>
                 </Link>
 
                 {/* Desktop Links */}
@@ -55,28 +62,17 @@ export default function Navbar() {
                             href={link.href}
                             className={cn(
                                 "text-sm uppercase tracking-[0.2em] font-medium transition-all duration-300 hover:text-gold",
-                                isScrolled ? "text-cream/90" : "text-emerald"
+                                isScrolled ? "text-cream/90 hover:text-gold" : "text-cream/90 hover:text-gold"
                             )}
                         >
                             {link.name}
                         </Link>
                     ))}
-                    <Link
-                        href="#contact"
-                        className={cn(
-                            "px-6 py-2 border transition-all duration-300 uppercase tracking-widest text-xs",
-                            isScrolled
-                                ? "border-gold text-gold hover:bg-gold hover:text-emerald"
-                                : "border-emerald text-emerald hover:bg-emerald hover:text-cream"
-                        )}
-                    >
-                        Reserved
-                    </Link>
                 </div>
 
                 {/* Mobile Toggle */}
                 <button
-                    className="md:hidden text-emerald"
+                    className={cn("md:hidden transition-colors duration-300", isScrolled ? "text-cream" : "text-cream")}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

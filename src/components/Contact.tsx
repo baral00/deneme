@@ -12,6 +12,7 @@ import {
     Paper
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { HarpSvg } from './HarpSvg';
 
 const eventTypes = [
     'Wedding Ceremony',
@@ -26,8 +27,16 @@ export default function Contact() {
     const [date, setDate] = useState<Date | null>(null);
 
     return (
-        <section id="contact" className="py-24 bg-cream">
-            <Container maxWidth="md">
+        <section id="contact" className="py-24 bg-cream relative overflow-hidden">
+            {/* Background Harps */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-5">
+                <HarpSvg className="absolute top-10 -left-10 w-96 h-96 text-gold transform -rotate-12" />
+                <HarpSvg className="absolute bottom-10 -right-10 w-96 h-96 text-gold transform rotate-12" />
+                <HarpSvg className="absolute top-1/2 left-1/4 w-48 h-48 text-emerald transform -translate-y-1/2 -rotate-6" />
+                <HarpSvg className="absolute top-1/4 right-1/4 w-64 h-64 text-emerald transform -translate-y-1/2 rotate-6 opacity-30" />
+            </div>
+
+            <div className="max-w-4xl mx-auto px-6 relative z-10">
                 <Paper className="p-12 md:p-16 border border-gold/10" elevation={0}>
                     <Box className="text-center mb-12">
                         <Typography variant="overline" className="text-gold tracking-[0.3em] font-medium mb-4 block">
@@ -119,7 +128,7 @@ export default function Contact() {
                         </Box>
                     </form>
                 </Paper>
-            </Container>
+            </div>
         </section>
     );
 }
