@@ -55,6 +55,7 @@ export default function Galerie({ images }: GalerieProps) {
                                     className="w-full h-auto object-cover rounded-sm transition-all duration-700"
                                 />
                             </motion.div>
+                        </motion.div>
                     ))}
                 </div>
             </Container>
