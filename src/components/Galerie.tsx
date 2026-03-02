@@ -5,12 +5,14 @@ import { motion } from 'framer-motion';
 import { Typography, Container, Box } from '@mui/material';
 import type { GalleryImage } from '@/lib/stitch';
 import { FadeInUp } from './animations/FadeInUp';
+import { useLanguage } from './providers/LanguageProvider';
 
 interface GalerieProps {
     images: GalleryImage[];
 }
 
 export default function Galerie({ images }: GalerieProps) {
+    const { t } = useLanguage();
     return (
         <section id="galerie" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#F7F4ED] to-[#F0EBE1]">
             {/* Seamless Floral Background */}
@@ -29,7 +31,7 @@ export default function Galerie({ images }: GalerieProps) {
                 <Box className="text-center mb-16">
                     <FadeInUp>
                         <Typography variant="h2" className="text-emerald mb-4">
-                            A Galerie of <span className="italic font-light">Elegance</span>
+                            {t.galerie.titlePart1} <span className="italic font-light">{t.galerie.titlePart2}</span>
                         </Typography>
                     </FadeInUp>
                 </Box>
@@ -56,7 +58,7 @@ export default function Galerie({ images }: GalerieProps) {
                                 >
                                     <img
                                         src={image.url}
-                                        alt={image.title}
+                                        alt={image.title || "Harpmusik vid bröllop och event i Skåne - Harpa Skåne Galerie"}
                                         className="w-full h-auto object-cover transition-all duration-700 grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105"
                                     />
                                 </motion.div>

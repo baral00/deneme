@@ -14,18 +14,53 @@ import {
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { FadeInUp } from './animations/FadeInUp';
 import { HoverScale } from './animations/HoverScale';
-
-const eventTypes = [
-    'Wedding Ceremony',
-    'Cocktail Hour',
-    'Corporate Gala',
-    'Private Soirée',
-    'Engagement Party',
-    'Other'
-];
+import { useLanguage } from './providers/LanguageProvider';
 
 export default function Contact() {
+    const { t } = useLanguage();
     const [date, setDate] = useState<Date | null>(null);
+    const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        eventType: '',
+        location: '',
+        vision: ''
+    });
+
+    const eventTypes = t.contact.eventOptions;
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('submitting');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...formData,
+                    date: date ? date.toLocaleDateString() : 'Not specified'
+                }),
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', eventType: '', location: '', vision: '' });
+                setDate(null);
+            } else {
+                setStatus('error');
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            setStatus('error');
+        }
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
 
     return (
         <section id="contact" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#F0EBE1] to-[#E8E1D5]">
@@ -48,95 +83,179 @@ export default function Contact() {
                     <Box className="text-center mb-12 relative z-10">
                         <FadeInUp>
                             <Typography variant="overline" className="text-gold tracking-[0.3em] font-medium mb-4 block">
-                                Inquiry
+                                {t.contact.overline}
                             </Typography>
                             <Typography variant="h2" className="text-emerald mb-4">
-                                Reserve <span className="italic font-light">The Date</span>
+                                {t.contact.titlePart1} <span className="italic font-light">{t.contact.titlePart2}</span>
                             </Typography>
                         </FadeInUp>
                     </Box>
 
-                    <form className="space-y-8">
-                        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 4 }}>
-                            <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 1' } }}>
-                                <TextField
-                                    fullWidth
-                                    label="Full Name"
-                                    variant="standard"
-                                    required
-                                    placeholder="e.g. Julianna Vane"
-                                    InputLabelProps={{ shrink: true }}
-                                />
-                            </Box>
-                            <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 1' } }}>
-                                <TextField
-                                    fullWidth
-                                    label="Email Address"
-                                    variant="standard"
-                                    required
-                                    type="email"
-                                    placeholder="concierge@example.com"
-                                    InputLabelProps={{ shrink: true }}
-                                />
-                            </Box>
-                            <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 1' } }}>
-                                <TextField
-                                    fullWidth
-                                    select
-                                    label="Event Type"
-                                    variant="standard"
-                                    defaultValue=""
-                                    required
-                                    InputLabelProps={{ shrink: true }}
+                    {status === 'success' ? (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="flex flex-col items-center justify-center text-center py-24 px-6 space-y-10 min-h-[500px] w-full"
+                        >
+                            <div className="flex flex-col items-center space-y-6 w-full">
+                                <Typography
+                                    variant="h3"
+                                    className="text-emerald font-light text-center w-full"
+                                    sx={{
+                                        textAlign: 'center',
+                                        display: 'block',
+                                        width: '100%'
+                                    }}
                                 >
-                                    {eventTypes.map((option) => (
-                                        <MenuItem key={option} value={option}>
-                                            {option}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
-                            </Box>
-                            <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 1' } }}>
-                                <DatePicker
-                                    label="Event Date"
-                                    value={date}
-                                    onChange={(newValue) => setDate(newValue)}
-                                    format="dd/MM/yyyy"
-                                    slotProps={{
-                                        textField: {
-                                            variant: 'standard',
-                                            fullWidth: true,
-                                            InputLabelProps: { shrink: true }
+                                    {t.contact.successTitle}
+                                </Typography>
+                                <Typography
+                                    className="text-emerald/70 text-lg leading-relaxed max-w-md mx-auto text-center w-full"
+                                    sx={{
+                                        textAlign: 'center',
+                                        display: 'block',
+                                        width: '100%'
+                                    }}
+                                >
+                                    {t.contact.successMsg}
+                                </Typography>
+                            </div>
+                            <div className="flex justify-center w-full">
+                                <Button
+                                    onClick={() => setStatus('idle')}
+                                    variant="outlined"
+                                    sx={{
+                                        borderColor: 'rgba(6, 78, 59, 0.3)',
+                                        color: '#064e3b',
+                                        borderRadius: '99px',
+                                        px: 8,
+                                        py: 2,
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.2em',
+                                        '&:hover': {
+                                            borderColor: '#d4af37',
+                                            bgcolor: 'rgba(212, 175, 55, 0.05)'
                                         }
                                     }}
-                                />
-                            </Box>
-                            <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 2' } }}>
-                                <TextField
-                                    fullWidth
-                                    label="Your Vision"
-                                    variant="standard"
-                                    multiline
-                                    rows={4}
-                                    placeholder="Tell me about your dream celebration..."
-                                    InputLabelProps={{ shrink: true }}
-                                />
-                            </Box>
-                        </Box>
-
-                        <Box className="pt-8 text-center flex justify-center relative z-10">
-                            <HoverScale>
-                                <button
-                                    type="submit"
-                                    className="group relative flex items-center justify-center overflow-hidden rounded-full border border-emerald/40 bg-emerald/5 px-14 py-4 md:px-16 md:py-5 text-sm font-light tracking-[0.2em] uppercase text-emerald transition-all duration-500 hover:border-gold/60 hover:bg-gold/10"
                                 >
-                                    <span className="relative z-10 transition-colors duration-500 group-hover:text-gold/90 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
-                                        Send Inquiry
-                                    </span>
-                                </button>
-                            </HoverScale>
-                        </Box>
-                    </form>
+                                    {t.contact.successBtn}
+                                </Button>
+                            </div>
+                        </motion.div>
+                    ) : (
+                        <form className="space-y-8" onSubmit={handleSubmit}>
+                            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 4 }}>
+                                <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 1' } }}>
+                                    <TextField
+                                        fullWidth
+                                        name="name"
+                                        label={t.contact.labelName}
+                                        variant="standard"
+                                        required
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        placeholder={t.contact.placeholderName}
+                                        InputLabelProps={{ shrink: true }}
+                                    />
+                                </Box>
+                                <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 1' } }}>
+                                    <TextField
+                                        fullWidth
+                                        name="email"
+                                        label={t.contact.labelEmail}
+                                        variant="standard"
+                                        required
+                                        type="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder={t.contact.placeholderEmail}
+                                        InputLabelProps={{ shrink: true }}
+                                    />
+                                </Box>
+                                <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 1' } }}>
+                                    <TextField
+                                        fullWidth
+                                        select
+                                        name="eventType"
+                                        label={t.contact.labelEvent}
+                                        variant="standard"
+                                        value={formData.eventType}
+                                        onChange={handleChange}
+                                        required
+                                        InputLabelProps={{ shrink: true }}
+                                    >
+                                        {eventTypes.map((option) => (
+                                            <MenuItem key={option} value={option}>
+                                                {option}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                </Box>
+                                <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 1' } }}>
+                                    <DatePicker
+                                        label={t.contact.labelDate}
+                                        value={date}
+                                        onChange={(newValue) => setDate(newValue)}
+                                        format="dd/MM/yyyy"
+                                        slotProps={{
+                                            textField: {
+                                                variant: 'standard',
+                                                fullWidth: true,
+                                                InputLabelProps: { shrink: true }
+                                            }
+                                        }}
+                                    />
+                                </Box>
+                                <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 2' } }}>
+                                    <TextField
+                                        fullWidth
+                                        name="location"
+                                        label={t.contact.labelLocation}
+                                        variant="standard"
+                                        required
+                                        value={formData.location}
+                                        onChange={handleChange}
+                                        placeholder={t.contact.placeholderLocation}
+                                        InputLabelProps={{ shrink: true }}
+                                    />
+                                </Box>
+                                <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 2' } }}>
+                                    <TextField
+                                        fullWidth
+                                        name="vision"
+                                        label={t.contact.labelVision}
+                                        variant="standard"
+                                        multiline
+                                        rows={4}
+                                        value={formData.vision}
+                                        onChange={handleChange}
+                                        placeholder={t.contact.placeholderVision}
+                                        InputLabelProps={{ shrink: true }}
+                                    />
+                                </Box>
+                            </Box>
+
+                            {status === 'error' && (
+                                <Typography color="error" align="center" variant="body2" sx={{ mt: 2 }}>
+                                    {t.contact.errorMsg}
+                                </Typography>
+                            )}
+
+                            <Box className="pt-8 text-center flex justify-center relative z-10">
+                                <HoverScale>
+                                    <button
+                                        type="submit"
+                                        disabled={status === 'submitting'}
+                                        className="group relative flex items-center justify-center overflow-hidden rounded-full border border-emerald/40 bg-emerald/5 px-14 py-4 md:px-16 md:py-5 text-sm font-light tracking-[0.2em] uppercase text-emerald transition-all duration-500 hover:border-gold/60 hover:bg-gold/10 disabled:opacity-50"
+                                    >
+                                        <span className="relative z-10 transition-colors duration-500 group-hover:text-gold/90 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+                                            {status === 'submitting' ? t.contact.submitting : t.contact.submitBtn}
+                                        </span>
+                                    </button>
+                                </HoverScale>
+                            </Box>
+                        </form>
+                    )}
                 </div>
             </div>
         </section>

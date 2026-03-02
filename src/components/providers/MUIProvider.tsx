@@ -5,17 +5,14 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/lib/theme';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import EmotionCacheProvider from './EmotionCacheProvider';
 
 export default function MUIProvider({ children }: { children: React.ReactNode }) {
     return (
-        <EmotionCacheProvider>
-            <ThemeProvider theme={theme}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <CssBaseline />
-                    {children}
-                </LocalizationProvider>
-            </ThemeProvider>
-        </EmotionCacheProvider>
+        <ThemeProvider theme={theme}>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <CssBaseline />
+                {children}
+            </LocalizationProvider>
+        </ThemeProvider>
     );
 }

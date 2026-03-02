@@ -4,25 +4,28 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Instagram, Facebook, Youtube } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { HoverScale } from './animations/HoverScale';
+import { useLanguage } from './providers/LanguageProvider';
 
 function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
-const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Galerie', href: '#galerie' },
-    { name: 'Contact', href: '#contact' },
-];
 
 export default function Navbar() {
+    const { language, setLanguage, t } = useLanguage();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const navLinks = [
+        { name: t.nav.home, href: '#home' },
+        { name: t.nav.about, href: '#about' },
+        { name: t.nav.galerie, href: '#galerie' },
+        { name: t.nav.contact, href: '#contact' },
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -39,17 +42,17 @@ export default function Navbar() {
                 isScrolled ? 'bg-emerald/60 backdrop-blur-md py-1 shadow-md' : 'bg-transparent'
             )}
         >
-            <div className="max-w-7xl mx-auto flex justify-between items-center">
-                <Link href="/" className="flex items-center space-x-2">
+            <div className="w-full flex justify-between items-center">
+                <Link href="/" className="flex items-center">
                     <div className={cn(
-                        "relative h-20 md:h-28 w-auto px-4 aspect-[4/1] transition-all duration-500",
+                        "relative h-16 md:h-24 w-auto aspect-[4/1] transition-all duration-500",
                         isScrolled ? "opacity-100" : "opacity-90 hover:opacity-100"
                     )}>
                         <Image
-                            src="/Gemini_Generated_Image_4fled34fled34fle-2-2.png"
-                            alt="Harp for Events Logo"
+                            src="/logo_1_perfect.png"
+                            alt="Harpa Skåne Logo"
                             fill
-                            className="object-contain object-left"
+                            className="object-contain object-left invert brightness-0"
                             priority
                         />
                     </div>
@@ -70,6 +73,57 @@ export default function Navbar() {
                             </Link>
                         </HoverScale>
                     ))}
+
+                    {/* Language Switcher */}
+                    <div className="flex items-center space-x-3 text-[10px] tracking-[0.2em] uppercase font-bold text-cream/40 border-l border-cream/20 pl-8">
+                        <button
+                            onClick={() => setLanguage('se')}
+                            className={cn("transition-colors hover:text-gold", language === 'se' ? "text-gold" : "text-cream/60")}
+                        >
+                            SE
+                        </button>
+                        <span className="opacity-20">|</span>
+                        <button
+                            onClick={() => setLanguage('en')}
+                            className={cn("transition-colors hover:text-gold", language === 'en' ? "text-gold" : "text-cream/60")}
+                        >
+                            EN
+                        </button>
+                    </div>
+
+                    {/* Socials Desktop */}
+                    <div className="flex items-center space-x-4 ml-6 pl-6 border-l border-cream/20">
+                        <HoverScale>
+                            <a
+                                href="https://www.instagram.com/harpaskane?igsh=czkwOTV0eDcxYm5m"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-cream/90 hover:text-gold transition-colors"
+                            >
+                                <Instagram size={18} />
+                            </a>
+                        </HoverScale>
+                        <HoverScale>
+                            <a
+                                href="https://www.facebook.com/share/1Mr1piUqHX/?mibextid=wwXIfr"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-cream/90 hover:text-gold transition-colors"
+                            >
+                                <Facebook size={18} />
+                            </a>
+                        </HoverScale>
+                        <HoverScale>
+                            <a
+                                href="https://www.youtube.com/@claudiabesne"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-cream/90 hover:text-gold transition-colors"
+                            >
+                                <Youtube size={18} />
+                            </a>
+                        </HoverScale>
+                    </div>
                 </div>
 
                 {/* Mobile Toggle */}
@@ -101,6 +155,50 @@ export default function Navbar() {
                                 </Link>
                             </HoverScale>
                         ))}
+
+                        {/* Mobile Language Switcher */}
+                        <div className="flex items-center space-x-6 pt-6 border-t border-gold/10">
+                            <button
+                                onClick={() => { setLanguage('se'); setIsMobileMenuOpen(false); }}
+                                className={cn("text-sm tracking-widest uppercase font-bold", language === 'se' ? "text-gold" : "text-cream/50")}
+                            >
+                                Swedish
+                            </button>
+                            <button
+                                onClick={() => { setLanguage('en'); setIsMobileMenuOpen(false); }}
+                                className={cn("text-sm tracking-widest uppercase font-bold", language === 'en' ? "text-gold" : "text-cream/50")}
+                            >
+                                English
+                            </button>
+                        </div>
+
+                        {/* Socials Mobile */}
+                        <div className="flex space-x-6 pt-4 border-t border-gold/20">
+                            <a
+                                href="https://www.instagram.com/harpaskane?igsh=czkwOTV0eDcxYm5m"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-cream/90 hover:text-gold transition-colors"
+                            >
+                                <Instagram size={24} />
+                            </a>
+                            <a
+                                href="https://www.facebook.com/share/1Mr1piUqHX/?mibextid=wwXIfr"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-cream/90 hover:text-gold transition-colors"
+                            >
+                                <Facebook size={24} />
+                            </a>
+                            <a
+                                href="https://www.youtube.com/@claudiabesne"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-cream/90 hover:text-gold transition-colors"
+                            >
+                                <Youtube size={24} />
+                            </a>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

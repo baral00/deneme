@@ -37,10 +37,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-cream" data-sb-object-id="content/pages/index.md">
       <Navbar />
-      <Hero
-        heading={pageData.heading || "Welcome"}
-        description={pageData.description || "Website"}
-      />
+      <Hero />
       <About />
       <Testimonials />
       <Galerie images={images} />

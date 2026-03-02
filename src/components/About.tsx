@@ -4,8 +4,11 @@ import React from 'react';
 import { Paper, Typography, Box, Container } from '@mui/material';
 import { FadeInUp } from './animations/FadeInUp';
 import { StaggerContainer, StaggerItem } from './animations/Stagger';
+import { useLanguage } from './providers/LanguageProvider';
 
 export default function About() {
+    const { t } = useLanguage();
+
     return (
         <section id="about" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#FCFAF8] to-[#F7F4ED]">
             {/* Seamless Floral Background */}
@@ -25,32 +28,32 @@ export default function About() {
                         <div>
                             <FadeInUp>
                                 <Typography variant="overline" className="text-gold tracking-[0.3em] font-medium mb-4 block">
-                                    My Approach
+                                    {t.about.overline}
                                 </Typography>
                                 <Typography variant="h2" className="text-emerald mb-8 leading-tight">
-                                    A Soundtrack for <br />
-                                    <span className="italic font-light">Your Story</span>
+                                    {t.about.titlePart1} <br />
+                                    <span className="italic font-light">{t.about.titlePart2}</span>
                                 </Typography>
                             </FadeInUp>
                             <StaggerContainer>
                                 <StaggerItem>
                                     <Typography className="text-foreground/70 text-lg leading-relaxed mb-6">
-                                        I believe weddings and special events deserve more than just music—<span className="font-bold text-foreground">they deserve a soul.</span>
+                                        {t.about.p1.split(t.about.p1Highlight)[0]} <span className="font-bold text-foreground">{t.about.p1Highlight}</span>
                                     </Typography>
                                 </StaggerItem>
                                 <StaggerItem>
                                     <Typography className="text-foreground/70 text-lg leading-relaxed mb-6">
-                                        By pairing the ethereal sound of my harp with your unique story, I curate a bespoke experience from the first note to the last.
+                                        {t.about.p2}
                                     </Typography>
                                 </StaggerItem>
                                 <StaggerItem>
                                     <Typography className="text-foreground/70 text-lg leading-relaxed mb-10">
-                                        My focus is on the fine details that make your day truly yours, delivering a performance that is as timeless as it is unforgettable.
+                                        {t.about.p3}
                                     </Typography>
                                 </StaggerItem>
                                 <StaggerItem>
                                     <Typography className="text-foreground/70 text-lg leading-relaxed">
-                                        I simply provide the quiet elegance that your milestone deserves.
+                                        {t.about.p4}
                                     </Typography>
                                 </StaggerItem>
                             </StaggerContainer>
@@ -69,28 +72,28 @@ export default function About() {
                                     <StaggerContainer staggerChildren={0.3}>
                                         <StaggerItem>
                                             <Typography variant="h5" className="text-emerald mb-4 font-serif">
-                                                Concert-Level Artistry
+                                                {t.about.feature1Title}
                                             </Typography>
                                             <Typography className="text-foreground/60">
-                                                As a concert harpist, I bring the mastery of the grand stage to your most intimate moments. I translate years of classical training into a personal soundtrack that reflects the unique soul of your story.
+                                                {t.about.feature1Desc}
                                             </Typography>
                                         </StaggerItem>
 
                                         <StaggerItem className="border-t border-gold/10 pt-8">
                                             <Typography variant="h5" className="text-emerald mb-4 font-serif">
-                                                Seamless Presence
+                                                {t.about.feature2Title}
                                             </Typography>
                                             <Typography className="text-foreground/60">
-                                                Performing in world-class venues has taught me that true luxury lies in the details. I handle every nuance with quiet confidence, ensuring a seamless experience so you can simply stay in the moment.
+                                                {t.about.feature2Desc}
                                             </Typography>
                                         </StaggerItem>
 
                                         <StaggerItem className="border-t border-gold/10 pt-8">
                                             <Typography variant="h5" className="text-emerald mb-4 font-serif">
-                                                The Perfect Note
+                                                {t.about.feature3Title}
                                             </Typography>
                                             <Typography className="text-foreground/60">
-                                                I believe music should be as warm and welcoming as the occasion itself. Whether it's your wedding or a special gathering, I'm here to help you find the right acoustic balance to match the feel of your day. I'm looking forward to helping you make the moment feel truly special.
+                                                {t.about.feature3Desc}
                                             </Typography>
                                         </StaggerItem>
                                     </StaggerContainer>

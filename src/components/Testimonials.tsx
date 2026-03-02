@@ -3,40 +3,19 @@
 import React, { useRef } from 'react';
 import { motion, useAnimationFrame, useMotionValue, useTransform } from 'framer-motion';
 import { Quote } from 'lucide-react';
-
-const testimonials = [
-    {
-        id: 1,
-        quote: "The harp music at our wedding was absolutely breathtaking. It added a layer of elegance and emotion that we will never forget. True artistry.",
-        name: "Eleanor & James"
-    },
-    {
-        id: 2,
-        quote: "Professional, punctual, and extraordinarily talented. Our corporate gala was elevated instantly the moment she began to play.",
-        name: "Aria Event Co."
-    },
-    {
-        id: 3,
-        quote: "A seamless experience from booking to performance. The ambiance created was nothing short of magic. Highly recommended for luxury events.",
-        name: "Sophia M."
-    },
-    {
-        id: 4,
-        quote: "Every guest commented on how beautiful the music was. It was the quiet luxury we were aiming for, executed perfectly.",
-        name: "David & Clara"
-    }
-];
+import { useLanguage } from './providers/LanguageProvider';
 
 export default function Testimonials() {
+    const { t } = useLanguage();
     const baseVelocity = -1; // Negative for scrolling left
     const x = useMotionValue(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
     const [isHovered, setIsHovered] = React.useState(false);
 
-    // Duplicate the array to create a seamless infinite loop
-    // Duplicate 3 times to ensure enough content to fill wide screens during the wrap
-    const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials];
+    // Use translated quotes and duplicate for seamless loop
+    const testimonialsList = t.testimonials.quotes;
+    const duplicatedTestimonials = [...testimonialsList, ...testimonialsList, ...testimonialsList];
 
     useAnimationFrame((t, delta) => {
         if (isHovered) return; // Pause on hover
@@ -44,20 +23,14 @@ export default function Testimonials() {
         let moveBy = baseVelocity * (delta / 16); // normalize by 60fps
 
         // Calculate the width of one full set of testimonials (before duplication)
-        // We will wrap around when we've scrolled past one full set's width.
         if (contentRef.current && containerRef.current) {
-            // Because we duplicated it 3 times, one set is roughly 1/3 of the scrollWidth
-            const singleSetWidth = contentRef.current.scrollWidth / (duplicatedTestimonials.length / testimonials.length);
+            const singleSetWidth = contentRef.current.scrollWidth / (duplicatedTestimonials.length / testimonialsList.length);
 
-            // Increment x by movement
             let newX = x.get() + moveBy;
 
-            // Wrap when scrolled exactly one set width to the left
             if (newX <= -singleSetWidth) {
-                // If we hit the wrap point, seamlessly teleport back by one set width
                 newX += singleSetWidth;
             }
-            // (Optional: handle right scrolling wrap if velocity was positive)
 
             x.set(newX);
         }
@@ -85,10 +58,10 @@ export default function Testimonials() {
                     transition={{ duration: 0.8 }}
                 >
                     <h2 className="text-3xl md:text-5xl font-serif italic text-emerald mb-4">
-                        Kind Words
+                        {t.testimonials.title}
                     </h2>
                     <p className="text-emerald/70 font-light tracking-wide max-w-2xl mx-auto">
-                        Reflections from those who have experienced the magic of the harp.
+                        {t.testimonials.subtitle}
                     </p>
                 </motion.div>
             </div>
@@ -108,7 +81,7 @@ export default function Testimonials() {
                 >
                     {duplicatedTestimonials.map((testimonial, index) => (
                         <div
-                            key={`${testimonial.id}-${index}`}
+                            key={`testimonial-${index}`}
                             className="flex-none w-[300px] md:w-[400px] p-8 md:p-12 rounded-3xl bg-white/60 backdrop-blur-md border border-[#D4AF37]/30 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col justify-between"
                         >
                             <div>
