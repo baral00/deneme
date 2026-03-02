@@ -17,7 +17,8 @@ import { HoverScale } from './animations/HoverScale';
 import { useLanguage } from './providers/LanguageProvider';
 
 export default function Contact() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
+    const langCode = language === 'se' ? 'sv' : 'en';
     const [date, setDate] = useState<Date | null>(null);
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
     const [formData, setFormData] = useState({
@@ -85,7 +86,11 @@ export default function Contact() {
                             <Typography variant="overline" className="text-gold tracking-[0.2em] md:tracking-[0.3em] font-medium mb-4 block text-[10px] md:text-xs">
                                 {t.contact.overline}
                             </Typography>
-                            <Typography variant="h2" className="text-emerald mb-4 text-3xl md:text-4xl lg:text-5xl hyphens-auto break-words">
+                            <Typography
+                                variant="h2"
+                                className="text-emerald mb-4 text-3xl md:text-4xl lg:text-5xl"
+                                style={{ textWrap: 'balance' } as any}
+                            >
                                 {t.contact.titlePart1} <span className="italic font-light">{t.contact.titlePart2}</span>
                             </Typography>
                         </FadeInUp>
@@ -101,6 +106,7 @@ export default function Contact() {
                                 <Typography
                                     variant="h3"
                                     className="text-emerald font-light text-center w-full text-2xl md:text-3xl"
+                                    style={{ textWrap: 'balance' } as any}
                                     sx={{
                                         textAlign: 'center',
                                         display: 'block',
@@ -111,10 +117,13 @@ export default function Contact() {
                                 </Typography>
                                 <Typography
                                     className="text-emerald/70 text-lg leading-relaxed max-w-md mx-auto text-center w-full"
+                                    lang={langCode}
                                     sx={{
                                         textAlign: 'center',
                                         display: 'block',
-                                        width: '100%'
+                                        width: '100%',
+                                        textWrap: 'pretty',
+                                        hyphens: 'auto'
                                     }}
                                 >
                                     {t.contact.successMsg}

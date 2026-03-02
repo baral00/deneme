@@ -7,7 +7,8 @@ import { StaggerContainer, StaggerItem } from './animations/Stagger';
 import { useLanguage } from './providers/LanguageProvider';
 
 export default function About() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
+    const langCode = language === 'se' ? 'sv' : 'en';
 
     return (
         <section id="about" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#FCFAF8] to-[#F7F4ED]">
@@ -25,34 +26,54 @@ export default function About() {
             <Container maxWidth="lg" className="relative z-10">
                 <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: { xs: 6, md: 8 }, alignItems: 'center' }}>
                     <Box>
-                        <div className="px-2 md:px-0">
+                        <div className="px-2 md:px-0 flex flex-col items-center md:items-start text-center md:text-left">
                             <FadeInUp>
-                                <Typography variant="overline" className="text-gold tracking-[0.2em] md:tracking-[0.3em] font-medium mb-4 block text-[10px] md:text-xs">
+                                <Typography variant="overline" className="text-gold tracking-[0.2em] md:tracking-[0.3em] font-medium mb-4 block text-[10px] md:text-xs uppercase">
                                     {t.about.overline}
                                 </Typography>
-                                <Typography variant="h2" className="text-emerald mb-8 leading-tight text-2xl md:text-4xl lg:text-5xl hyphens-auto break-words">
+                                <Typography
+                                    variant="h2"
+                                    className="text-emerald mb-8 leading-tight text-3xl md:text-4xl lg:text-5xl"
+                                    style={{ textWrap: 'balance' } as any}
+                                >
                                     {t.about.titlePart1} <br />
                                     <span className="italic font-light">{t.about.titlePart2}</span>
                                 </Typography>
                             </FadeInUp>
-                            <StaggerContainer className="will-change-transform">
+                            <StaggerContainer className="will-change-transform max-w-2xl">
                                 <StaggerItem>
-                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6 hyphens-auto">
+                                    <Typography
+                                        className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6"
+                                        lang={langCode}
+                                        style={{ textWrap: 'pretty', hyphens: 'auto' } as any}
+                                    >
                                         {t.about.p1.split(t.about.p1Highlight)[0]} <span className="font-bold text-foreground">{t.about.p1Highlight}</span>
                                     </Typography>
                                 </StaggerItem>
                                 <StaggerItem>
-                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6 hyphens-auto">
+                                    <Typography
+                                        className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6"
+                                        lang={langCode}
+                                        style={{ textWrap: 'pretty', hyphens: 'auto' } as any}
+                                    >
                                         {t.about.p2}
                                     </Typography>
                                 </StaggerItem>
                                 <StaggerItem>
-                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed mb-8 md:mb-10 hyphens-auto">
+                                    <Typography
+                                        className="text-foreground/70 text-base md:text-lg leading-relaxed mb-8 md:mb-10"
+                                        lang={langCode}
+                                        style={{ textWrap: 'pretty', hyphens: 'auto' } as any}
+                                    >
                                         {t.about.p3}
                                     </Typography>
                                 </StaggerItem>
                                 <StaggerItem>
-                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed hyphens-auto">
+                                    <Typography
+                                        className="text-foreground/70 text-base md:text-lg leading-relaxed"
+                                        lang={langCode}
+                                        style={{ textWrap: 'pretty', hyphens: 'auto' } as any}
+                                    >
                                         {t.about.p4}
                                     </Typography>
                                 </StaggerItem>
@@ -71,28 +92,52 @@ export default function About() {
                                 <Box className="relative z-10 space-y-10 md:space-y-12">
                                     <StaggerContainer staggerChildren={0.3} className="will-change-transform">
                                         <StaggerItem>
-                                            <Typography variant="h5" className="text-emerald mb-3 md:mb-4 font-serif text-xl md:text-2xl">
+                                            <Typography
+                                                variant="h5"
+                                                className="text-emerald mb-3 md:mb-4 font-serif text-xl md:text-2xl"
+                                                style={{ textWrap: 'balance' } as any}
+                                            >
                                                 {t.about.feature1Title}
                                             </Typography>
-                                            <Typography className="text-foreground/60 text-sm md:text-base">
+                                            <Typography
+                                                className="text-foreground/60 text-sm md:text-base"
+                                                lang={langCode}
+                                                style={{ textWrap: 'pretty', hyphens: 'auto' } as any}
+                                            >
                                                 {t.about.feature1Desc}
                                             </Typography>
                                         </StaggerItem>
 
                                         <StaggerItem className="border-t border-gold/10 pt-6 md:pt-8">
-                                            <Typography variant="h5" className="text-emerald mb-3 md:mb-4 font-serif text-xl md:text-2xl">
+                                            <Typography
+                                                variant="h5"
+                                                className="text-emerald mb-3 md:mb-4 font-serif text-xl md:text-2xl"
+                                                style={{ textWrap: 'balance' } as any}
+                                            >
                                                 {t.about.feature2Title}
                                             </Typography>
-                                            <Typography className="text-foreground/60 text-sm md:text-base">
+                                            <Typography
+                                                className="text-foreground/60 text-sm md:text-base"
+                                                lang={langCode}
+                                                style={{ textWrap: 'pretty', hyphens: 'auto' } as any}
+                                            >
                                                 {t.about.feature2Desc}
                                             </Typography>
                                         </StaggerItem>
 
                                         <StaggerItem className="border-t border-gold/10 pt-6 md:pt-8">
-                                            <Typography variant="h5" className="text-emerald mb-3 md:mb-4 font-serif text-xl md:text-2xl">
+                                            <Typography
+                                                variant="h5"
+                                                className="text-emerald mb-3 md:mb-4 font-serif text-xl md:text-2xl"
+                                                style={{ textWrap: 'balance' } as any}
+                                            >
                                                 {t.about.feature3Title}
                                             </Typography>
-                                            <Typography className="text-foreground/60 text-sm md:text-base">
+                                            <Typography
+                                                className="text-foreground/60 text-sm md:text-base"
+                                                lang={langCode}
+                                                style={{ textWrap: 'pretty', hyphens: 'auto' } as any}
+                                            >
                                                 {t.about.feature3Desc}
                                             </Typography>
                                         </StaggerItem>
