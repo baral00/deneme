@@ -30,29 +30,29 @@ export default function About() {
                                 <Typography variant="overline" className="text-gold tracking-[0.2em] md:tracking-[0.3em] font-medium mb-4 block text-[10px] md:text-xs">
                                     {t.about.overline}
                                 </Typography>
-                                <Typography variant="h2" className="text-emerald mb-8 leading-tight text-3xl md:text-4xl lg:text-5xl">
+                                <Typography variant="h2" className="text-emerald mb-8 leading-tight text-2xl md:text-4xl lg:text-5xl hyphens-auto break-words">
                                     {t.about.titlePart1} <br />
                                     <span className="italic font-light">{t.about.titlePart2}</span>
                                 </Typography>
                             </FadeInUp>
                             <StaggerContainer className="will-change-transform">
                                 <StaggerItem>
-                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6">
+                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6 hyphens-auto">
                                         {t.about.p1.split(t.about.p1Highlight)[0]} <span className="font-bold text-foreground">{t.about.p1Highlight}</span>
                                     </Typography>
                                 </StaggerItem>
                                 <StaggerItem>
-                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6">
+                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6 hyphens-auto">
                                         {t.about.p2}
                                     </Typography>
                                 </StaggerItem>
                                 <StaggerItem>
-                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed mb-8 md:mb-10">
+                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed mb-8 md:mb-10 hyphens-auto">
                                         {t.about.p3}
                                     </Typography>
                                 </StaggerItem>
                                 <StaggerItem>
-                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed">
+                                    <Typography className="text-foreground/70 text-base md:text-lg leading-relaxed hyphens-auto">
                                         {t.about.p4}
                                     </Typography>
                                 </StaggerItem>

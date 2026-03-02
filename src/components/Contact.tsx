@@ -76,16 +76,16 @@ export default function Contact() {
             {/* Gradient overlay to soften it and hide seams */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#F0EBE1] via-transparent to-[#E8E1D5] z-0" />
 
-            <div className="max-w-4xl mx-auto px-6 relative z-10">
+            <div className="max-w-4xl mx-auto px-4 md:px-6 relative z-10">
                 <div
-                    className="p-10 md:p-16 border border-gold/20 rounded-[2.5rem] bg-[#FCFAF8]/95 backdrop-blur-md shadow-[0_20px_50px_rgba(212,175,55,0.1)] relative overflow-hidden"
+                    className="p-6 md:p-16 border border-gold/20 rounded-[2.5rem] bg-[#FCFAF8]/95 backdrop-blur-md shadow-[0_20px_50px_rgba(212,175,55,0.1)] relative overflow-hidden"
                 >
-                    <Box className="text-center mb-12 relative z-10">
+                    <Box className="text-center mb-10 md:mb-12 relative z-10">
                         <FadeInUp>
-                            <Typography variant="overline" className="text-gold tracking-[0.3em] font-medium mb-4 block">
+                            <Typography variant="overline" className="text-gold tracking-[0.2em] md:tracking-[0.3em] font-medium mb-4 block text-[10px] md:text-xs">
                                 {t.contact.overline}
                             </Typography>
-                            <Typography variant="h2" className="text-emerald mb-4">
+                            <Typography variant="h2" className="text-emerald mb-4 text-3xl md:text-4xl lg:text-5xl hyphens-auto break-words">
                                 {t.contact.titlePart1} <span className="italic font-light">{t.contact.titlePart2}</span>
                             </Typography>
                         </FadeInUp>
@@ -95,12 +95,12 @@ export default function Contact() {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="flex flex-col items-center justify-center text-center py-24 px-6 space-y-10 min-h-[500px] w-full"
+                            className="flex flex-col items-center justify-center text-center py-12 md:py-24 px-4 md:px-6 space-y-8 md:space-y-10 min-h-[400px] md:min-h-[500px] w-full"
                         >
                             <div className="flex flex-col items-center space-y-6 w-full">
                                 <Typography
                                     variant="h3"
-                                    className="text-emerald font-light text-center w-full"
+                                    className="text-emerald font-light text-center w-full text-2xl md:text-3xl"
                                     sx={{
                                         textAlign: 'center',
                                         display: 'block',
