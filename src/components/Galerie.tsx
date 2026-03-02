@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Typography, Container, Box } from '@mui/material';
+import Image from 'next/image';
 import type { GalleryImage } from '@/lib/stitch';
 import { FadeInUp } from './animations/FadeInUp';
 import { useLanguage } from './providers/LanguageProvider';
@@ -28,9 +29,9 @@ export default function Galerie({ images }: GalerieProps) {
             <div className="absolute inset-0 bg-gradient-to-b from-[#F7F4ED] via-transparent to-[#F0EBE1] z-0" />
 
             <Container maxWidth="xl" className="relative z-10">
-                <Box className="text-center mb-16">
+                <Box className="text-center mb-16 px-4">
                     <FadeInUp>
-                        <Typography variant="h2" className="text-emerald mb-4">
+                        <Typography variant="h2" className="text-emerald mb-4 text-3xl md:text-5xl lg:text-6xl">
                             {t.galerie.titlePart1} <span className="italic font-light">{t.galerie.titlePart2}</span>
                         </Typography>
                     </FadeInUp>
@@ -44,7 +45,7 @@ export default function Galerie({ images }: GalerieProps) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="relative break-inside-avoid mb-8"
+                            className="relative break-inside-avoid mb-8 will-change-transform"
                         >
                             {/* The Frame / Matte */}
                             <div className="bg-[#FCFAF8] p-3 md:p-5 rounded-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-[#D4AF37]/30 relative group">
@@ -55,10 +56,16 @@ export default function Galerie({ images }: GalerieProps) {
                                     whileHover={{ scale: 1.03 }}
                                     transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
                                     className="relative overflow-hidden rounded-sm line-clamp-none bg-[#E8E6E1]"
+                                    style={{ aspectRatio: `auto / ${image.height}` }}
                                 >
-                                    <img
+                                    <Image
                                         src={image.url}
                                         alt={image.title || "Harpmusik vid bröllop och event i Skåne - Harpa Skåne Galerie"}
+                                        width={800}
+                                        height={image.height * 2} // Approximate based on title
+                                        style={{ width: '100%', height: 'auto' }}
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        quality={80}
                                         className="w-full h-auto object-cover transition-all duration-700 grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105"
                                     />
                                 </motion.div>
