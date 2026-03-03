@@ -7,7 +7,7 @@ import MUIProvider from "@/components/providers/MUIProvider";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import SEO from "@/components/SEO";
 
-export async function generateMetadata({ params }: { params: { locale: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
   const baseUrl = 'https://harpaskane.se';
@@ -69,7 +69,7 @@ export default async function RootLayout({
   params
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
 
