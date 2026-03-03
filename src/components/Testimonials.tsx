@@ -3,10 +3,10 @@
 import React, { useRef } from 'react';
 import { motion, useAnimationFrame, useMotionValue, useTransform } from 'framer-motion';
 import { Quote } from 'lucide-react';
-import { useLanguage } from './providers/LanguageProvider';
+import { useTranslations } from 'next-intl';
 
 export default function Testimonials() {
-    const { t } = useLanguage();
+    const t = useTranslations('testimonials');
     const baseVelocity = -1; // Negative for scrolling left
     const x = useMotionValue(0);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -14,7 +14,7 @@ export default function Testimonials() {
     const [isHovered, setIsHovered] = React.useState(false);
 
     // Use translated quotes and duplicate for seamless loop
-    const testimonialsList = t.testimonials.quotes;
+    const testimonialsList = t.raw('quotes') as Array<{ quote: string; name: string }>;
     const duplicatedTestimonials = [...testimonialsList, ...testimonialsList, ...testimonialsList];
 
     useAnimationFrame((t, delta) => {
@@ -58,10 +58,10 @@ export default function Testimonials() {
                     transition={{ duration: 0.8 }}
                 >
                     <h2 className="text-3xl md:text-5xl font-serif italic text-emerald mb-4">
-                        {t.testimonials.title}
+                        {t('title')}
                     </h2>
                     <p className="text-emerald/70 font-light tracking-wide max-w-2xl mx-auto">
-                        {t.testimonials.subtitle}
+                        {t('subtitle')}
                     </p>
                 </motion.div>
             </div>

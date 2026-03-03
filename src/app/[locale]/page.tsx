@@ -8,6 +8,7 @@ import Galerie from "@/components/Galerie";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { getGalleryImages } from "@/lib/stitch";
+import { useTranslations } from 'next-intl';
 
 // Helper to parse simple frontmatter
 function parseFrontmatter(fileContent: string) {
@@ -29,7 +30,7 @@ function parseFrontmatter(fileContent: string) {
 export default async function Home() {
   const images = await getGalleryImages();
 
-  // Read content from git CMS source
+  // Read content from git CMS source (keeping for reference, but we use next-intl now)
   const filePath = path.join(process.cwd(), 'content/pages/index.md');
   const fileContent = fs.readFileSync(filePath, 'utf8');
   const pageData = parseFrontmatter(fileContent);

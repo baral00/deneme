@@ -1,15 +1,20 @@
 'use client';
 
 import React from 'react';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function SEO() {
+    const t = useTranslations('metadata');
+    const locale = useLocale();
+    const baseUrl = 'https://harpaskane.se';
+
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Harpa Skåne",
-        "image": "https://harpaskane.se/IMG_2080website hero.jpg",
-        "@id": "https://harpaskane.se",
-        "url": "https://harpaskane.se",
+        "image": `${baseUrl}/IMG_2080website hero.jpg`,
+        "@id": `${baseUrl}/${locale}`,
+        "url": `${baseUrl}/${locale}`,
         "telephone": "+46793162064",
         "address": {
             "@type": "PostalAddress",
@@ -43,7 +48,7 @@ export default function SEO() {
             "https://www.instagram.com/harpaskane?igsh=czkwOTV0eDcxYm5m",
             "https://www.youtube.com/@claudiabesne"
         ],
-        "description": "Exklusiv harpmusik för bröllop och event i Skåne. Professionell harpist för vigsel, mingel och fest.",
+        "description": t('description'),
         "priceRange": "$$$"
     };
 
@@ -51,12 +56,27 @@ export default function SEO() {
         "@context": "https://schema.org",
         "@type": "MusicGroup",
         "name": "Harpa Skåne",
-        "description": "Professionell harpist specialiserad på bröllop och exklusiva event i Skåne.",
+        "description": t('description'),
         "genre": ["Classical", "Contemporary", "Wedding Music"],
         "location": {
             "@type": "Place",
             "name": "Skåne, Sweden"
         }
+    };
+
+    const serviceData = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Harp Music for Events",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "Harpa Skåne"
+        },
+        "areaServed": {
+            "@type": "State",
+            "name": "Skåne"
+        },
+        "description": t('description')
     };
 
     return (
@@ -68,6 +88,10 @@ export default function SEO() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(musicianData) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceData) }}
             />
         </>
     );

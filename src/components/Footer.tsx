@@ -4,16 +4,17 @@ import React from 'react';
 import Link from 'next/link';
 import { Mail, Phone, Instagram, Facebook, Youtube } from 'lucide-react';
 import { HoverScale } from './animations/HoverScale';
-import { useLanguage } from './providers/LanguageProvider';
+import { useTranslations } from 'next-intl';
 
 export default function Footer() {
-    const { t } = useLanguage();
+    const tNav = useTranslations('nav');
+    const tFooter = useTranslations('footer');
 
     const quickLinks = [
-        { name: t.nav.home, href: '#home' },
-        { name: t.nav.about, href: '#about' },
-        { name: t.nav.galerie, href: '#galerie' },
-        { name: t.nav.contact, href: '#contact' },
+        { name: tNav('home'), href: '#home' },
+        { name: tNav('about'), href: '#about' },
+        { name: tNav('galerie'), href: '#galerie' },
+        { name: tNav('contact'), href: '#contact' },
     ];
 
     return (
@@ -23,13 +24,13 @@ export default function Footer() {
                 <div className="md:col-span-1">
                     <h3 className="text-2xl font-serif text-gold mb-4">HARPA SKÅNE</h3>
                     <p className="text-cream/60 font-light leading-relaxed">
-                        {t.footer.tagline}
+                        {tFooter('tagline')}
                     </p>
                 </div>
 
                 {/* Navigation */}
                 <div>
-                    <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">{t.footer.quickLinks}</h4>
+                    <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">{tFooter('quickLinks')}</h4>
                     <ul className="space-y-4">
                         {quickLinks.map((link) => (
                             <li key={link.name}>
@@ -46,7 +47,7 @@ export default function Footer() {
 
                 {/* Contact Info */}
                 <div>
-                    <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">{t.footer.contactMe}</h4>
+                    <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">{tFooter('contactMe')}</h4>
                     <ul className="space-y-4 text-sm text-cream/70">
                         <li className="flex items-center space-x-3">
                             <Mail size={16} className="text-gold" />
@@ -65,7 +66,7 @@ export default function Footer() {
 
                 {/* Social */}
                 <div>
-                    <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">{t.footer.social}</h4>
+                    <h4 className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-6">{tFooter('social')}</h4>
                     <div className="flex space-x-4">
                         <HoverScale>
                             <a

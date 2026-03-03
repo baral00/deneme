@@ -6,14 +6,14 @@ import { Typography, Container, Box } from '@mui/material';
 import Image from 'next/image';
 import type { GalleryImage } from '@/lib/stitch';
 import { FadeInUp } from './animations/FadeInUp';
-import { useLanguage } from './providers/LanguageProvider';
+import { useTranslations } from 'next-intl';
 
 interface GalerieProps {
     images: GalleryImage[];
 }
 
 export default function Galerie({ images }: GalerieProps) {
-    const { t } = useLanguage();
+    const t = useTranslations('galerie');
     return (
         <section id="galerie" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#F7F4ED] to-[#F0EBE1]">
             {/* Seamless Floral Background */}
@@ -32,7 +32,7 @@ export default function Galerie({ images }: GalerieProps) {
                 <Box className="text-center mb-16 px-4">
                     <FadeInUp>
                         <Typography variant="h2" className="text-emerald mb-4 text-3xl md:text-5xl lg:text-6xl">
-                            {t.galerie.titlePart1} <span className="italic font-light">{t.galerie.titlePart2}</span>
+                            {t('titlePart1')} <span className="italic font-light">{t('titlePart2')}</span>
                         </Typography>
                     </FadeInUp>
                 </Box>

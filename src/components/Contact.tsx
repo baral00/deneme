@@ -14,11 +14,11 @@ import {
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { FadeInUp } from './animations/FadeInUp';
 import { HoverScale } from './animations/HoverScale';
-import { useLanguage } from './providers/LanguageProvider';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function Contact() {
-    const { t, language } = useLanguage();
-    const langCode = language === 'se' ? 'sv' : 'en';
+    const t = useTranslations('contact');
+    const locale = useLocale();
     const [date, setDate] = useState<Date | null>(null);
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
     const [formData, setFormData] = useState({
@@ -29,7 +29,8 @@ export default function Contact() {
         vision: ''
     });
 
-    const eventTypes = t.contact.eventOptions;
+    const eventOptionsRaw = t.raw('eventOptions');
+    const eventTypes = typeof eventOptionsRaw === 'object' ? Object.values(eventOptionsRaw) : [];
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -84,14 +85,14 @@ export default function Contact() {
                     <Box className="text-center mb-10 md:mb-12 relative z-10">
                         <FadeInUp>
                             <Typography variant="overline" className="text-gold tracking-[0.2em] md:tracking-[0.3em] font-medium mb-4 block text-[10px] md:text-xs">
-                                {t.contact.overline}
+                                {t('overline')}
                             </Typography>
                             <Typography
                                 variant="h2"
                                 className="text-emerald mb-4 text-3xl md:text-4xl lg:text-5xl"
                                 style={{ textWrap: 'balance' } as any}
                             >
-                                {t.contact.titlePart1} <span className="italic font-light">{t.contact.titlePart2}</span>
+                                {t('titlePart1')} <span className="italic font-light">{t('titlePart2')}</span>
                             </Typography>
                         </FadeInUp>
                     </Box>
@@ -113,11 +114,11 @@ export default function Contact() {
                                         width: '100%'
                                     }}
                                 >
-                                    {t.contact.successTitle}
+                                    {t('successTitle')}
                                 </Typography>
                                 <Typography
                                     className="text-emerald/70 text-lg leading-relaxed max-w-md mx-auto text-center w-full"
-                                    lang={langCode}
+                                    lang={locale}
                                     sx={{
                                         textAlign: 'center',
                                         display: 'block',
@@ -126,7 +127,7 @@ export default function Contact() {
                                         hyphens: 'auto'
                                     }}
                                 >
-                                    {t.contact.successMsg}
+                                    {t('successMsg')}
                                 </Typography>
                             </div>
                             <div className="flex justify-center w-full">
@@ -147,7 +148,7 @@ export default function Contact() {
                                         }
                                     }}
                                 >
-                                    {t.contact.successBtn}
+                                    {t('successBtn')}
                                 </Button>
                             </div>
                         </motion.div>
@@ -158,12 +159,12 @@ export default function Contact() {
                                     <TextField
                                         fullWidth
                                         name="name"
-                                        label={t.contact.labelName}
+                                        label={t('labelName')}
                                         variant="standard"
                                         required
                                         value={formData.name}
                                         onChange={handleChange}
-                                        placeholder={t.contact.placeholderName}
+                                        placeholder={t('placeholderName')}
                                         InputLabelProps={{ shrink: true }}
                                     />
                                 </Box>
@@ -171,13 +172,13 @@ export default function Contact() {
                                     <TextField
                                         fullWidth
                                         name="email"
-                                        label={t.contact.labelEmail}
+                                        label={t('labelEmail')}
                                         variant="standard"
                                         required
                                         type="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        placeholder={t.contact.placeholderEmail}
+                                        placeholder={t('placeholderEmail')}
                                         InputLabelProps={{ shrink: true }}
                                     />
                                 </Box>
@@ -186,7 +187,7 @@ export default function Contact() {
                                         fullWidth
                                         select
                                         name="eventType"
-                                        label={t.contact.labelEvent}
+                                        label={t('labelEvent')}
                                         variant="standard"
                                         value={formData.eventType}
                                         onChange={handleChange}
@@ -194,15 +195,15 @@ export default function Contact() {
                                         InputLabelProps={{ shrink: true }}
                                     >
                                         {eventTypes.map((option) => (
-                                            <MenuItem key={option} value={option}>
-                                                {option}
+                                            <MenuItem key={option as string} value={option as string}>
+                                                {option as string}
                                             </MenuItem>
                                         ))}
                                     </TextField>
                                 </Box>
                                 <Box sx={{ gridColumn: { xs: 'span 1', md: 'span 1' } }}>
                                     <DatePicker
-                                        label={t.contact.labelDate}
+                                        label={t('labelDate')}
                                         value={date}
                                         onChange={(newValue) => setDate(newValue)}
                                         format="dd/MM/yyyy"
@@ -219,12 +220,12 @@ export default function Contact() {
                                     <TextField
                                         fullWidth
                                         name="location"
-                                        label={t.contact.labelLocation}
+                                        label={t('labelLocation')}
                                         variant="standard"
                                         required
                                         value={formData.location}
                                         onChange={handleChange}
-                                        placeholder={t.contact.placeholderLocation}
+                                        placeholder={t('placeholderLocation')}
                                         InputLabelProps={{ shrink: true }}
                                     />
                                 </Box>
@@ -232,13 +233,13 @@ export default function Contact() {
                                     <TextField
                                         fullWidth
                                         name="vision"
-                                        label={t.contact.labelVision}
+                                        label={t('labelVision')}
                                         variant="standard"
                                         multiline
                                         rows={4}
                                         value={formData.vision}
                                         onChange={handleChange}
-                                        placeholder={t.contact.placeholderVision}
+                                        placeholder={t('placeholderVision')}
                                         InputLabelProps={{ shrink: true }}
                                     />
                                 </Box>
@@ -246,7 +247,7 @@ export default function Contact() {
 
                             {status === 'error' && (
                                 <Typography color="error" align="center" variant="body2" sx={{ mt: 2 }}>
-                                    {t.contact.errorMsg}
+                                    {t('errorMsg')}
                                 </Typography>
                             )}
 
@@ -258,7 +259,7 @@ export default function Contact() {
                                         className="group relative flex items-center justify-center overflow-hidden rounded-full border border-emerald/40 bg-emerald/5 px-14 py-4 md:px-16 md:py-5 text-sm font-light tracking-[0.2em] uppercase text-emerald transition-all duration-500 hover:border-gold/60 hover:bg-gold/10 disabled:opacity-50"
                                     >
                                         <span className="relative z-10 transition-colors duration-500 group-hover:text-gold/90 group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
-                                            {status === 'submitting' ? t.contact.submitting : t.contact.submitBtn}
+                                            {status === 'submitting' ? t('submitting') : t('submitBtn')}
                                         </span>
                                     </button>
                                 </HoverScale>

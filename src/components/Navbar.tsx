@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Instagram, Facebook, Youtube } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { HoverScale } from './animations/HoverScale';
-import { useLanguage } from './providers/LanguageProvider';
+import { useTranslations, useLocale } from 'next-intl';
+import { Link, useRouter, usePathname } from '@/i18n/routing';
 
 function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -16,15 +16,18 @@ function cn(...inputs: ClassValue[]) {
 
 
 export default function Navbar() {
-    const { language, setLanguage, t } = useLanguage();
+    const t = useTranslations('nav');
+    const locale = useLocale();
+    const router = useRouter();
+    const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navLinks = [
-        { name: t.nav.home, href: '#home' },
-        { name: t.nav.about, href: '#about' },
-        { name: t.nav.galerie, href: '#galerie' },
-        { name: t.nav.contact, href: '#contact' },
+        { name: t('home'), href: '#home' },
+        { name: t('about'), href: '#about' },
+        { name: t('galerie'), href: '#galerie' },
+        { name: t('contact'), href: '#contact' },
     ];
 
     useEffect(() => {
@@ -34,6 +37,10 @@ export default function Navbar() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleLanguageChange = (newLocale: 'en' | 'se') => {
+        router.push(pathname, { locale: newLocale });
+    };
 
     return (
         <nav
@@ -63,7 +70,7 @@ export default function Navbar() {
                     {navLinks.map((link) => (
                         <HoverScale key={link.name}>
                             <Link
-                                href={link.href}
+                                href={link.href as any}
                                 className={cn(
                                     "block text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-300",
                                     isScrolled ? "text-cream/90 hover:text-gold" : "text-cream/90 hover:text-gold"
@@ -77,15 +84,15 @@ export default function Navbar() {
                     {/* Language Switcher */}
                     <div className="flex items-center space-x-3 text-[10px] tracking-[0.2em] uppercase font-bold text-cream/40 border-l border-cream/20 pl-8">
                         <button
-                            onClick={() => setLanguage('se')}
-                            className={cn("transition-colors hover:text-gold", language === 'se' ? "text-gold" : "text-cream/60")}
+                            onClick={() => handleLanguageChange('se')}
+                            className={cn("transition-colors hover:text-gold", locale === 'se' ? "text-gold" : "text-cream/60")}
                         >
                             SE
                         </button>
                         <span className="opacity-20">|</span>
                         <button
-                            onClick={() => setLanguage('en')}
-                            className={cn("transition-colors hover:text-gold", language === 'en' ? "text-gold" : "text-cream/60")}
+                            onClick={() => handleLanguageChange('en')}
+                            className={cn("transition-colors hover:text-gold", locale === 'en' ? "text-gold" : "text-cream/60")}
                         >
                             EN
                         </button>
@@ -147,7 +154,7 @@ export default function Navbar() {
                         {navLinks.map((link) => (
                             <HoverScale key={link.name}>
                                 <Link
-                                    href={link.href}
+                                    href={link.href as any}
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className="block text-lg uppercase tracking-widest hover:text-gold transition-colors duration-300"
                                 >
@@ -159,14 +166,14 @@ export default function Navbar() {
                         {/* Mobile Language Switcher */}
                         <div className="flex items-center space-x-6 pt-6 border-t border-gold/10">
                             <button
-                                onClick={() => { setLanguage('se'); setIsMobileMenuOpen(false); }}
-                                className={cn("text-sm tracking-widest uppercase font-bold", language === 'se' ? "text-gold" : "text-cream/50")}
+                                onClick={() => { handleLanguageChange('se'); setIsMobileMenuOpen(false); }}
+                                className={cn("text-sm tracking-widest uppercase font-bold", locale === 'se' ? "text-gold" : "text-cream/50")}
                             >
                                 Swedish
                             </button>
                             <button
-                                onClick={() => { setLanguage('en'); setIsMobileMenuOpen(false); }}
-                                className={cn("text-sm tracking-widest uppercase font-bold", language === 'en' ? "text-gold" : "text-cream/50")}
+                                onClick={() => { handleLanguageChange('en'); setIsMobileMenuOpen(false); }}
+                                className={cn("text-sm tracking-widest uppercase font-bold", locale === 'en' ? "text-gold" : "text-cream/50")}
                             >
                                 English
                             </button>

@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "home": "Hem",
+    "about": "Om Harpa Skåne",
+    "galerie": "Galleri",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "title": "Skapa tidlösa minnen med",
+    "titleGold": "Lyxig harpmusik i Skåne",
+    "btnPrimary": "Boka datum",
+    "btnSecondary": "Se galleri"
+  },
+  "about": {
+    "overline": "Professionell Harpist i Skåne",
+    "titlePart1": "Exklusiv underhållning för",
+    "titlePart2": "Ditt Bröllop & Event",
+    "p1": "Jag tror att bröllop och speciella evenemang förtjänar mer än bara bakgrundsmusik – de förtjänar en själfull och elegant atmosfär.",
+    "p1Highlight": "en själfull och elegant atmosfär.",
+    "p2": "Som professionell harpist i Skåne skapar jag en skräddarsydd musikalisk upplevelse som parar ihop harpans eteriska klang med din unika historia.",
+    "p3": "Oavsett om det gäller vigsel i Malmö, mingel i Lund eller en fest på Österlen, ligger mitt fokus på de fina detaljerna som gör din dag oförglömlig.",
+    "p4": "Jag erbjuder den lågmälda lyx och elegans som din milstolpe förtjänar med live harpmusik av högsta klass.",
+    "feature1Title": "Artistisk briljans på konsertnivå",
+    "feature1Desc": "Som konsertharpist tar jag med mig storscenens mästerskap till dina mest intima stunder. Jag översätter år av klassisk skolning till en personlig ljudbild som speglar din historias unika själ.",
+    "feature2Title": "Sömlös närvaro vid event",
+    "feature2Desc": "Att uppträda på scener i världsklass har lärt mig att sann lyx ligger i detaljerna. Jag hanterar varje nyans med lågmält självförtroende, vilket säkerställer en smidig upplevelse för dina gäster.",
+    "feature3Title": "Den perfekta bröllopstonen",
+    "feature3Desc": "Jag anser att musik ska vara lika varm och välkomnande som själva tillfället. Jag hjälper dig att hitta rätt akustisk balans som matchar känslan för din stora dag i hela Skåne."
+  },
+  "testimonials": {
+    "title": "Vackra ord",
+    "subtitle": "Reflektioner från dem som har upplevt harpans magi.",
+    "quotes": [
+      {
+        "quote": "Harp-musiken vid vårt bröllop var helt fantastisk. Den tillförde ett lager av elegans och känslor som vi aldrig kommer att glömma. Sann artistisk briljans.",
+        "name": "Eleanor & James"
+      },
+      {
+        "quote": "Vi hade Claudia som spelade på vårt bröllop i oktober. Hon var förtrollande, mycket professionell och väldigt lätt att planera med (hon hade både en fantastisk repertoar och tog även emot önskemål). Viktigast av allt – hon är extremt skicklig på sin harpa. Jag och min fru rekommenderar henne varmt till alla som vill ha en minnesvärd, magisk och imponerande upplevelse. 10/10!",
+        "name": "Carl Granklint R."
+      },
+      {
+        "quote": "Claudia spelade på vårt bröllop i somras. Hon var flexibel och hjälpsam när det gällde låtval och spelade helt fantastiskt. Mycket uppskattat av både oss och alla gäster!",
+        "name": "Fredrik L."
+      },
+      {
+        "quote": "Varje gäst kommenterade hur vacker musiken var. Det var precis den lågmälda lyx vi strävade efter, perfekt utfört.",
+        "name": "David & Clara"
+      }
+    ]
+  },
+  "contact": {
+    "overline": "Förfrågan",
+    "titlePart1": "Reservera",
+    "titlePart2": "Datum",
+    "successTitle": "Tack",
+    "successMsg": "Din förfrågan har tagits emot med glädje. Jag återkommer till dig inom kort för att diskutera din vision.",
+    "successBtn": "Skicka en ny förfrågan",
+    "labelName": "Fullständigt namn",
+    "labelEmail": "E-postadress",
+    "labelEvent": "Typ av evenemang",
+    "labelDate": "Datum för evenemanget",
+    "labelLocation": "Var i Skåne planeras evenemanget?",
+    "labelVision": "Din vision",
+    "placeholderName": "t.ex. Julianna Vane",
+    "placeholderEmail": "concierge@exempel.se",
+    "placeholderLocation": "t.ex. Malmö, Lund, Helsingborg, Österlen",
+    "placeholderVision": "Berätta om ditt drömfirande...",
+    "eventOptions": {
+      "wedding": "Bröllop (Vigsel & Mingel)",
+      "cocktail": "Cocktail",
+      "corporate": "Företagsgala",
+      "private": "Privat soaré",
+      "engagement": "Förlovningsfest",
+      "other": "Annat"
+    },
+    "errorMsg": "Något gick fel. Försök igen eller kontakta mig direkt.",
+    "submitting": "Skickar...",
+    "submitBtn": "Skicka förfrågan"
+  },
+  "galerie": {
+    "titlePart1": "Ett galleri av",
+    "titlePart2": "Elegans"
+  },
+  "footer": {
+    "tagline": "Elegant. Tidlöst. Oförglömligt.",
+    "quickLinks": "Snabblänkar",
+    "contactMe": "Kontakta mig",
+    "social": "Socialt"
+  },
+  "metadata": {
+    "title": "Harpa Skåne | Exklusiv Harpmusik för Bröllop & Event i Skåne",
+    "description": "Professionell harpist i Skåne. Skapa magisk stämning på ditt bröllop, dop eller företagsevent med elegant livemusik i Malmö, Lund och Helsingborg.",
+    "keywords": "harpist skåne, harpa bröllop malmö, harpmusik lund, levande musik bröllop skåne, professionell harpist, bröllopsmusik skåne",
+    "ogTitle": "Harpa Skåne | Exklusiv Harpmusik",
+    "ogDescription": "Elegant livemusik för dina mest värdefulla ögonblick."
+  }
+}
