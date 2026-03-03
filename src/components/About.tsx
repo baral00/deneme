@@ -26,7 +26,7 @@ export default function About() {
             <Container maxWidth="lg" className="relative z-10">
                 <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: { xs: 6, md: 8 }, alignItems: 'center' }}>
                     <Box>
-                        <div className="px-2 md:px-0 flex flex-col items-center md:items-start text-center md:text-left">
+                        <div className="px-2 md:px-0 flex flex-col items-start md:items-start text-left md:text-left">
                             <FadeInUp>
                                 <Typography variant="overline" className="text-gold tracking-[0.2em] md:tracking-[0.3em] font-medium mb-4 block text-[10px] md:text-xs uppercase">
                                     {t('overline')}

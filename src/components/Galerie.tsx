@@ -37,7 +37,7 @@ export default function Galerie({ images }: GalerieProps) {
                     </FadeInUp>
                 </Box>
 
-                <div className="columns-1 md:columns-2 gap-6 space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 items-start">
                     {images.map((image, index) => (
                         <motion.div
                             key={image.id}
@@ -45,7 +45,7 @@ export default function Galerie({ images }: GalerieProps) {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="relative break-inside-avoid mb-8 will-change-transform"
+                            className="relative mb-0 will-change-transform"
                         >
                             {/* The Frame / Matte */}
                             <div className="bg-[#FCFAF8] p-3 md:p-5 rounded-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] border border-[#D4AF37]/30 relative group">
