@@ -33,8 +33,8 @@ export default function About() {
                                 </Typography>
                                 <Typography
                                     variant="h2"
-                                    className="text-emerald mb-6 leading-tight text-3xl md:text-4xl lg:text-5xl"
-                                    style={{ textWrap: 'balance' } as any}
+                                    className="text-emerald mb-6 leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-5xl break-words"
+                                    sx={{ textWrap: 'balance' } as any}
                                 >
                                     {t('titlePart1')} <br />
                                     <span className="italic font-light">{t('titlePart2')}</span>
@@ -43,7 +43,7 @@ export default function About() {
                             <StaggerContainer className="will-change-transform max-w-2xl">
                                 <StaggerItem>
                                     <Typography
-                                        className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6 text-left md:text-justify break-words"
+                                        className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6 text-justify break-words"
                                         lang={locale === 'se' ? 'sv' : 'en'}
                                         sx={{ textWrap: 'pretty', hyphens: 'auto' } as any}
                                     >
@@ -52,7 +52,7 @@ export default function About() {
                                 </StaggerItem>
                                 <StaggerItem>
                                     <Typography
-                                        className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6 text-left md:text-justify break-words"
+                                        className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6 text-justify break-words"
                                         lang={locale === 'se' ? 'sv' : 'en'}
                                         sx={{ textWrap: 'pretty', hyphens: 'auto' } as any}
                                     >
@@ -61,7 +61,7 @@ export default function About() {
                                 </StaggerItem>
                                 <StaggerItem>
                                     <Typography
-                                        className="text-foreground/70 text-base md:text-lg leading-relaxed mb-8 md:mb-10 text-left md:text-justify break-words"
+                                        className="text-foreground/70 text-base md:text-lg leading-relaxed mb-8 md:mb-10 text-justify break-words"
                                         lang={locale === 'se' ? 'sv' : 'en'}
                                         sx={{ textWrap: 'pretty', hyphens: 'auto' } as any}
                                     >
@@ -70,7 +70,7 @@ export default function About() {
                                 </StaggerItem>
                                 <StaggerItem>
                                     <Typography
-                                        className="text-foreground/70 text-base md:text-lg leading-relaxed text-left md:text-justify break-words"
+                                        className="text-foreground/70 text-base md:text-lg leading-relaxed text-justify break-words"
                                         lang={locale === 'se' ? 'sv' : 'en'}
                                         sx={{ textWrap: 'pretty', hyphens: 'auto' } as any}
                                     >
@@ -100,7 +100,7 @@ export default function About() {
                                                 {t('feature1Title')}
                                             </Typography>
                                             <Typography
-                                                className="text-foreground/60 text-sm md:text-base text-left md:text-justify break-words"
+                                                className="text-foreground/60 text-sm md:text-base text-justify break-words"
                                                 lang={locale === 'se' ? 'sv' : 'en'}
                                                 sx={{ textWrap: 'pretty', hyphens: 'auto' } as any}
                                             >
@@ -117,7 +117,7 @@ export default function About() {
                                                 {t('feature2Title')}
                                             </Typography>
                                             <Typography
-                                                className="text-foreground/60 text-sm md:text-base text-left md:text-justify break-words"
+                                                className="text-foreground/60 text-sm md:text-base text-justify break-words"
                                                 lang={locale === 'se' ? 'sv' : 'en'}
                                                 sx={{ textWrap: 'pretty', hyphens: 'auto' } as any}
                                             >
@@ -134,7 +134,7 @@ export default function About() {
                                                 {t('feature3Title')}
                                             </Typography>
                                             <Typography
-                                                className="text-foreground/60 text-sm md:text-base text-left md:text-justify break-words"
+                                                className="text-foreground/60 text-sm md:text-base text-justify break-words"
                                                 lang={locale === 'se' ? 'sv' : 'en'}
                                                 sx={{ textWrap: 'pretty', hyphens: 'auto' } as any}
                                             >
