@@ -18,7 +18,7 @@ import { useTranslations } from 'next-intl';
 export default function Hero() {
     const t = useTranslations('hero');
     return (
-        <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden bg-emerald">
+        <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-emerald pt-24 pb-12 md:pt-32 md:pb-16">
             {/* Background Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -34,14 +34,14 @@ export default function Hero() {
 
             {/* Content Container - Centered on all screen sizes */}
             <div className="relative z-10 w-full px-6 md:px-12 max-w-7xl mx-auto">
-                <div className="flex flex-col items-center text-center gap-3 md:gap-4.5">
+                <div className="flex flex-col items-center text-center gap-1.5 md:gap-2.5">
 
-                    {/* Logo Section - Perfect Centering & New White Asset */}
+                    {/* Logo Section - Perfect Centering & Adjusted Scaling for all screens */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1.5, ease: "easeOut" }}
-                        className="relative w-full max-w-[280px] sm:max-w-[420px] md:max-w-[715px] lg:max-w-[845px] xl:max-w-[1040px] aspect-square flex items-center justify-center pointer-events-none"
+                        className="relative w-full max-w-[280px] sm:max-w-[420px] md:max-w-[550px] lg:max-w-[650px] xl:max-w-[750px] aspect-square flex items-center justify-center pointer-events-none"
                     >
                         {/* Subtle Logo Support */}
                         <div className="absolute inset-0 flex items-center justify-center -z-10 blur-3xl opacity-20">
@@ -67,7 +67,7 @@ export default function Hero() {
 
                     {/* Buttons Section - Centered Baseline */}
                     <FadeInUp delay={0.6}>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 md:gap-8 mt-0">
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 md:gap-8 mt-2 md:mt-3">
                             <HoverScale>
                                 <a
                                     href="#contact"
@@ -93,5 +93,6 @@ export default function Hero() {
                 </div>
             </div>
         </section>
+
     );
 }
