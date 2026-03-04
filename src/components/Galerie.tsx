@@ -55,18 +55,15 @@ export default function Galerie({ images }: GalerieProps) {
                                 <motion.div
                                     whileHover={{ scale: 1.03 }}
                                     transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-                                    className="relative overflow-hidden rounded-sm line-clamp-none bg-[#E8E6E1]"
-                                    style={{ aspectRatio: `auto / ${image.height}` }}
+                                    className="relative overflow-hidden rounded-sm line-clamp-none bg-[#E8E6E1] aspect-[4/5]"
                                 >
                                     <Image
                                         src={image.url}
                                         alt={image.title || "Harpmusik vid bröllop och event i Skåne - Harpa Skåne Galerie"}
-                                        width={800}
-                                        height={image.height * 2} // Approximate based on title
-                                        style={{ width: '100%', height: 'auto' }}
+                                        fill
                                         sizes="(max-width: 768px) 100vw, 50vw"
                                         quality={80}
-                                        className="w-full h-auto object-cover transition-all duration-700 grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105"
+                                        className="object-cover transition-all duration-700 grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105"
                                     />
                                 </motion.div>
                             </div>

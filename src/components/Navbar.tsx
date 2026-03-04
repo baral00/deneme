@@ -52,7 +52,7 @@ export default function Navbar() {
             <div className="w-full flex justify-between items-center">
                 <Link href="/" className="flex items-center">
                     <div className={cn(
-                        "relative h-16 md:h-24 w-auto aspect-[4/1] transition-all duration-500",
+                        "relative h-16 md:h-20 lg:h-24 w-auto aspect-[4/1] transition-all duration-500",
                         isScrolled ? "opacity-100" : "opacity-90 hover:opacity-100"
                     )}>
                         <Image
@@ -66,7 +66,7 @@ export default function Navbar() {
                 </Link>
 
                 {/* Desktop Links */}
-                <div className="hidden md:flex space-x-10 items-center">
+                <div className="hidden md:flex space-x-4 lg:space-x-10 items-center">
                     {navLinks.map((link) => (
                         <HoverScale key={link.name}>
                             <Link
@@ -82,7 +82,7 @@ export default function Navbar() {
                     ))}
 
                     {/* Language Switcher */}
-                    <div className="flex items-center space-x-3 text-[10px] tracking-[0.2em] uppercase font-bold text-cream/40 border-l border-cream/20 pl-8">
+                    <div className="flex items-center space-x-3 text-[10px] tracking-[0.2em] uppercase font-bold text-cream/40 border-l border-cream/20 pl-4 lg:pl-8">
                         <button
                             onClick={() => handleLanguageChange('se')}
                             className={cn("transition-colors hover:text-gold", locale === 'se' ? "text-gold" : "text-cream/60")}
@@ -99,7 +99,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Socials Desktop */}
-                    <div className="flex items-center space-x-4 ml-6 pl-6 border-l border-cream/20">
+                    <div className="flex items-center space-x-4 ml-4 pl-4 lg:ml-6 lg:pl-6 border-l border-cream/20">
                         <HoverScale>
                             <a
                                 href="https://www.instagram.com/harpaskane?igsh=czkwOTV0eDcxYm5m"

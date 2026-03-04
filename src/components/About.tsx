@@ -44,8 +44,8 @@ export default function About() {
                                 <StaggerItem>
                                     <Typography
                                         className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6"
-                                        lang={locale}
-                                        style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify' } as any}
+                                        lang={locale === 'se' ? 'sv' : 'en'}
+                                        style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify', textJustify: 'inter-word' } as any}
                                     >
                                         {t('p1').split(t('p1Highlight'))[0]} <span className="font-bold text-foreground">{t('p1Highlight')}</span>
                                     </Typography>
@@ -53,8 +53,8 @@ export default function About() {
                                 <StaggerItem>
                                     <Typography
                                         className="text-foreground/70 text-base md:text-lg leading-relaxed mb-6"
-                                        lang={locale}
-                                        style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify' } as any}
+                                        lang={locale === 'se' ? 'sv' : 'en'}
+                                        style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify', textJustify: 'inter-word' } as any}
                                     >
                                         {t('p2')}
                                     </Typography>
@@ -62,8 +62,8 @@ export default function About() {
                                 <StaggerItem>
                                     <Typography
                                         className="text-foreground/70 text-base md:text-lg leading-relaxed mb-8 md:mb-10"
-                                        lang={locale}
-                                        style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify' } as any}
+                                        lang={locale === 'se' ? 'sv' : 'en'}
+                                        style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify', textJustify: 'inter-word' } as any}
                                     >
                                         {t('p3')}
                                     </Typography>
@@ -71,8 +71,8 @@ export default function About() {
                                 <StaggerItem>
                                     <Typography
                                         className="text-foreground/70 text-base md:text-lg leading-relaxed"
-                                        lang={locale}
-                                        style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify' } as any}
+                                        lang={locale === 'se' ? 'sv' : 'en'}
+                                        style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify', textJustify: 'inter-word' } as any}
                                     >
                                         {t('p4')}
                                     </Typography>
@@ -101,8 +101,8 @@ export default function About() {
                                             </Typography>
                                             <Typography
                                                 className="text-foreground/60 text-sm md:text-base"
-                                                lang={locale}
-                                                style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify' } as any}
+                                                lang={locale === 'se' ? 'sv' : 'en'}
+                                                style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify', textJustify: 'inter-word' } as any}
                                             >
                                                 {t('feature1Desc')}
                                             </Typography>
@@ -118,8 +118,8 @@ export default function About() {
                                             </Typography>
                                             <Typography
                                                 className="text-foreground/60 text-sm md:text-base"
-                                                lang={locale}
-                                                style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify' } as any}
+                                                lang={locale === 'se' ? 'sv' : 'en'}
+                                                style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify', textJustify: 'inter-word' } as any}
                                             >
                                                 {t('feature2Desc')}
                                             </Typography>
@@ -135,8 +135,8 @@ export default function About() {
                                             </Typography>
                                             <Typography
                                                 className="text-foreground/60 text-sm md:text-base"
-                                                lang={locale}
-                                                style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify' } as any}
+                                                lang={locale === 'se' ? 'sv' : 'en'}
+                                                style={{ textWrap: 'pretty', hyphens: 'auto', textAlign: 'justify', textJustify: 'inter-word' } as any}
                                             >
                                                 {t('feature3Desc')}
                                             </Typography>

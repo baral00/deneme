@@ -82,8 +82,9 @@ export default async function RootLayout({
   // side is the easiest way to get started
   const messages = await getMessages();
 
+  const htmlLang = locale === 'se' ? 'sv' : locale;
   return (
-    <html lang={locale}>
+    <html lang={htmlLang}>
       <body className="antialiased">
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <NextIntlClientProvider messages={messages}>
