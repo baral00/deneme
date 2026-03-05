@@ -5,13 +5,13 @@ export async function POST(req: Request) {
     try {
         const body = await req.json();
 
-        // Helper to force a string to clean ASCII
+        // Helper to force a string to clean ASCII and trim whitespace
         const cleanString = (str: any) => {
             if (!str) return '';
             return String(str)
                 .normalize('NFD') // Decompose combined characters
                 .replace(/[\u0300-\u036f]/g, '') // Remove accents
-                .replace(/[^\x00-\x7F]/g, '') // Remove any remaining non-ASCII
+                .replace(/[^\x00-\x7F]/g, '') // Remove non-ASCII
                 .trim();
         };
 
@@ -24,7 +24,6 @@ export async function POST(req: Request) {
 
         console.log('--- Processing Email Inquiry ---');
         console.log(`From: ${name} (${email})`);
-        console.log(`Type: ${eventType} | Location: ${location} | Date: ${date}`);
 
         // Basic validation
         if (!name || !email || !eventType) {
@@ -34,20 +33,16 @@ export async function POST(req: Request) {
             );
         }
 
-        // FORCE everything to be strict ASCII
-        const forceAscii = (str: string) => {
-            return str.split('').filter(char => char.charCodeAt(0) <= 127).join('');
-        };
-
-        const safePassword = forceAscii(cleanString(process.env.GMAIL_SMTP_KEY));
+        // Robustly clean the password - remove ALL whitespace
+        const safePassword = (process.env.GMAIL_SMTP_KEY || '').replace(/\s+/g, '');
 
         // Configure SMTP
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 587,
-            secure: false,
+            secure: false, // TLS
             auth: {
-                user: 'harpaskane@gmail.com',
+                user: 'harpaskane@gmail.com', // Verified correct address
                 pass: safePassword,
             },
         });
@@ -55,8 +50,8 @@ export async function POST(req: Request) {
         const mailOptions = {
             from: 'harpaskane@gmail.com',
             to: 'harpaskane@gmail.com',
-            subject: forceAscii(`Harp Inquiry: ${name}`),
-            text: forceAscii(`Name: ${name}\nEmail: ${email}\nEvent: ${eventType}\nLocation: ${location}\nDate: ${date}\nVision: ${vision}`),
+            subject: `Harp Inquiry from ${name}`,
+            text: `Name: ${name}\nEmail: ${email}\nEvent: ${eventType}\nLocation: ${location}\nDate: ${date}\nVision: ${vision}`,
             html: `
                 <div style="font-family: sans-serif; background: #fdfaf6; padding: 30px; border-radius: 12px; color: #064e3b; border: 1px solid #d4af37;">
                     <h2 style="margin-top: 0;">New inquiry from your website</h2>
@@ -76,7 +71,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ message: 'Success' }, { status: 200 });
 
     } catch (error: any) {
-        console.error('--- SMTP Error: ---', error.message || error);
+        console.error('--- SMTP Error Detail: ---', error);
         return NextResponse.json(
             { error: 'Internal Error' },
             { status: 500 }

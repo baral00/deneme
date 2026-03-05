@@ -33,8 +33,12 @@ export default function About() {
                                 </Typography>
                                 <Typography
                                     variant="h2"
-                                    className="text-emerald mb-6 leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-5xl break-words"
-                                    sx={{ textWrap: 'balance' } as any}
+                                    className="text-emerald mb-6 leading-tight text-xl sm:text-2xl md:text-4xl lg:text-5xl break-words"
+                                    sx={{
+                                        textWrap: 'balance',
+                                        hyphens: 'auto',
+                                        overflowWrap: 'anywhere'
+                                    } as any}
                                 >
                                     {t('titlePart1')} <br />
                                     <span className="italic font-light">{t('titlePart2')}</span>
