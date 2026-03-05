@@ -4,6 +4,7 @@ import nodemailer from 'nodemailer';
 export async function POST(req: Request) {
     try {
         const body = await req.json();
+        console.log('--- Incoming Request Body ---', body);
 
         // Helper to force a string to clean ASCII and trim whitespace
         const cleanString = (str: any) => {
@@ -27,14 +28,24 @@ export async function POST(req: Request) {
 
         // Basic validation
         if (!name || !email || !eventType) {
+            console.error('--- Validation failed ---', { name, email, eventType });
             return NextResponse.json(
                 { error: 'Name, email, and event type are required.' },
                 { status: 400 }
             );
         }
 
+        const rawSmtpKey = process.env.GMAIL_SMTP_KEY;
+        if (!rawSmtpKey) {
+            console.error('--- GMAIL_SMTP_KEY is missing from environment ---');
+            return NextResponse.json(
+                { error: 'SMTP Configuration Missing' },
+                { status: 500 }
+            );
+        }
+
         // Robustly clean the password - remove ALL whitespace
-        const safePassword = (process.env.GMAIL_SMTP_KEY || '').replace(/\s+/g, '');
+        const safePassword = rawSmtpKey.replace(/\s+/g, '');
 
         // Configure SMTP
         const transporter = nodemailer.createTransport({
@@ -73,7 +84,7 @@ export async function POST(req: Request) {
     } catch (error: any) {
         console.error('--- SMTP Error Detail: ---', error);
         return NextResponse.json(
-            { error: 'Internal Error' },
+            { error: error.message || 'Internal Error' },
             { status: 500 }
         );
     }

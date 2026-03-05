@@ -21,6 +21,7 @@ export default function Contact() {
     const locale = useLocale();
     const [date, setDate] = useState<Date | null>(null);
     const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -35,6 +36,7 @@ export default function Contact() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus('submitting');
+        setErrorMessage(null);
 
         try {
             const response = await fetch('/api/contact', {
@@ -46,16 +48,20 @@ export default function Contact() {
                 }),
             });
 
+            const data = await response.json();
+
             if (response.ok) {
                 setStatus('success');
                 setFormData({ name: '', email: '', eventType: '', location: '', vision: '' });
                 setDate(null);
             } else {
                 setStatus('error');
+                setErrorMessage(data.error || t('errorMsg'));
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error('Submission error:', error);
             setStatus('error');
+            setErrorMessage(error.message || t('errorMsg'));
         }
     };
 
@@ -247,7 +253,7 @@ export default function Contact() {
 
                             {status === 'error' && (
                                 <Typography color="error" align="center" variant="body2" sx={{ mt: 2 }}>
-                                    {t('errorMsg')}
+                                    {errorMessage || t('errorMsg')}
                                 </Typography>
                             )}
 
