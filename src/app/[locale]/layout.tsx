@@ -6,6 +6,7 @@ import "../globals.css";
 import MUIProvider from "@/components/providers/MUIProvider";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import SEO from "@/components/SEO";
+import Script from 'next/script';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -85,6 +86,21 @@ export default async function RootLayout({
   const htmlLang = locale === 'se' ? 'sv' : locale;
   return (
     <html lang={htmlLang}>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-80F2F8TPDN"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-80F2F8TPDN');
+          `}
+        </Script>
+      </head>
       <body className="antialiased">
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <NextIntlClientProvider messages={messages}>
@@ -98,4 +114,5 @@ export default async function RootLayout({
     </html>
   );
 }
+
 
