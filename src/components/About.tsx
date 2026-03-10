@@ -142,7 +142,7 @@ export default function About() {
                                                 lang={locale === 'se' ? 'sv' : 'en'}
                                                 sx={{ textWrap: 'pretty', hyphens: 'auto' } as any}
                                             >
-                                                {t('feature3Desc')}
+                                                {t('feature3Desc')} I provide professional harp music services for weddings, corporate events, and private gatherings across Skåne.
                                             </Typography>
                                         </StaggerItem>
                                     </StaggerContainer>

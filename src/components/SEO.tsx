@@ -5,10 +5,13 @@ import { useTranslations, useLocale } from 'next-intl';
 
 export default function SEO() {
     const t = useTranslations('metadata');
+    const tAbout = useTranslations('about');
+    const tTestimonials = useTranslations('testimonials');
     const locale = useLocale();
     const baseUrl = 'https://harpaskane.se';
 
-    const structuredData = {
+    // Base SEO Structured Data
+    const localBusinessData = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Harpa Skåne",
@@ -32,13 +35,7 @@ export default function SEO() {
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-                "Sunday"
+                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
             ],
             "opens": "00:00",
             "closes": "23:59"
@@ -64,26 +61,54 @@ export default function SEO() {
         }
     };
 
-    const serviceData = {
+    // Person Schema for E-E-A-T
+    const personData = {
         "@context": "https://schema.org",
-        "@type": "Service",
-        "serviceType": "Harp Music for Events",
-        "provider": {
-            "@type": "LocalBusiness",
-            "name": "Harpa Skåne"
-        },
-        "areaServed": {
-            "@type": "State",
-            "name": "Skåne"
-        },
-        "description": t('description')
+        "@type": "Person",
+        "name": "Claudia Besne",
+        "jobTitle": "Harpist",
+        "description": tAbout('feature1Desc'),
+        "url": baseUrl,
+        "sameAs": [
+            "https://www.instagram.com/harpaskane",
+            "https://www.youtube.com/@claudiabesne"
+        ],
+        "knowsAbout": ["Harp Music", "Wedding Music", "Classical Music", "Event Entertainment"]
+    };
+
+    // FAQ Schema for AI Search
+    const faqData = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": locale === 'se' ? "Vilka områden täcker ni?" : "What areas do you cover?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": locale === 'se'
+                        ? "Vi erbjuder harpmusik i hela Skåne, inklusive Malmö, Lund, Helsingborg och Österlen."
+                        : "We offer harp music throughout Skåne, including Malmö, Lund, Helsingborg, and Österlen."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": locale === 'se' ? "Vilka typer av evenemang spelar du på?" : "What types of events do you play for?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": locale === 'se'
+                        ? "Jag spelar på bröllopsceremonier, cocktail-timmar, företagsevent och privata fester."
+                        : "I perform for wedding ceremonies, cocktail hours, corporate events, and private parties."
+                }
+            }
+        ]
     };
 
     return (
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessData) }}
             />
             <script
                 type="application/ld+json"
@@ -91,7 +116,11 @@ export default function SEO() {
             />
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceData) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(personData) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
             />
         </>
     );
